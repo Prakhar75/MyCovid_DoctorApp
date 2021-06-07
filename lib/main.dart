@@ -1,16 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import'package:flutter/services.dart';
-
+import 'package:flutter/services.dart';
 
 void main() {
-  
   return runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        
         backgroundColor: Colors.black,
         body: MyApp(),
       ),
@@ -23,18 +20,16 @@ class MyApp extends StatefulWidget {
   _MyState createState() => _MyState();
 }
 
-class _MyState extends State<MyApp> {                                        // WELCOME and login page
+class _MyState extends State<MyApp> {
+  // WELCOME and login page
   TextEditingController passController = new TextEditingController();
- 
 
- 
   Widget build(BuildContext context) {
-     SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-          ]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
-      
       backgroundColor: Colors.black,
       body: Container(
         decoration: BoxDecoration(
@@ -50,8 +45,7 @@ class _MyState extends State<MyApp> {                                        // 
               Padding(
                 padding: EdgeInsets.all(10),
               ),
-              FlatButton(
-                
+              Container(
                 child: CircleAvatar(
                   child: Text(
                     '+',
@@ -62,6 +56,7 @@ class _MyState extends State<MyApp> {                                        // 
                   ),
                   radius: 30,
                 ),
+                
               ),
               Padding(
                 padding: EdgeInsets.all(10),
@@ -125,8 +120,7 @@ class _MyState extends State<MyApp> {                                        // 
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          
-                         TextFormField(
+                          TextFormField(
                             controller: passController,
                             decoration: InputDecoration(
                               labelText: "Enter Your Mobile Number",
@@ -146,16 +140,16 @@ class _MyState extends State<MyApp> {                                        // 
                 textColor: Colors.white,
                 child: Text('Get OTP'),
                 onPressed: () => {
-                  if ((passController.text).length==10)
+                  if ((passController.text).length == 10)
                     {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => SecondRoute()),
                       ),
                     }
-                    else
+                  else
                     {
-                      passController.text="invalid number",       
+                      passController.text = "invalid number",
                     }
                 },
                 splashColor: Colors.tealAccent,
@@ -168,14 +162,15 @@ class _MyState extends State<MyApp> {                                        // 
   }
 }
 
-class SecondRoute extends StatefulWidget {   // OTP page
+class SecondRoute extends StatefulWidget {
+  // OTP page
   @override
   _SecondRouteState createState() => _SecondRouteState();
 }
 
 class _SecondRouteState extends State<SecondRoute> {
-    TextEditingController passContro= new TextEditingController();
-  List<Offset> _points = <Offset>[];
+  TextEditingController passContro = new TextEditingController();
+
   @override
   @override
   Widget build(BuildContext context) {
@@ -183,7 +178,7 @@ class _SecondRouteState extends State<SecondRoute> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-         image: AssetImage('assets/images/doc.jpg'),
+          image: AssetImage('assets/images/doc.jpg'),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(Colors.black87, BlendMode.darken),
         )),
@@ -198,11 +193,11 @@ class _SecondRouteState extends State<SecondRoute> {
                 margin: EdgeInsets.only(top: 20, bottom: 20),
                 child: Text("Enter Your OTP",
                     style: TextStyle(
-                        color: Colors.white, fontSize: 25,
-                        letterSpacing: 2,
-                  fontWeight: FontWeight.bold,
-                )),
-
+                      color: Colors.white,
+                      fontSize: 25,
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.bold,
+                    )),
               ),
               Container(
                 width: 800,
@@ -255,36 +250,31 @@ class _SecondRouteState extends State<SecondRoute> {
     );
   }
 }
-class ThirdRoute extends StatefulWidget {          // home page for doctor App after login (in process)
+
+class ThirdRoute extends StatefulWidget {
+  // home page for doctor App after login (in process)
   @override
   _ThirdRouteState createState() => _ThirdRouteState();
 }
 
 class _ThirdRouteState extends State<ThirdRoute> {
-  List<Offset> _points = <Offset>[];
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: Text(
-          
-          "MyCovid Doctor's App"
-        ),
+        title: Text("MyCovid Doctor's App"),
       ),
       body: new Center(
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            
             new Text(
               'Hello , Prakhar ',
-              style: Theme.of(context).textTheme.display1,
+              
             ),
           ],
         ),
       ),
-     
     );
   }
 }
-
