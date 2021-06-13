@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mycovid/details.dart';
 
+
 void main() => runApp(dash());
 
 class dash extends StatelessWidget {
