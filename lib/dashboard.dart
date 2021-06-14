@@ -184,7 +184,7 @@ class dashState extends State<dash> {
                       ),
                       onPressed: () {},
                       child: Text(
-                          'ID : ${myALLDATA[index].LastName} NAME : ${myALLDATA[index].FirstName}'),
+                          '${myALLDATA[index].LastName} ${myALLDATA[index].FirstName}'),
                     ),
                   ],
                 ),
