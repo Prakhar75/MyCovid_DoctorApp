@@ -21,17 +21,19 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
        debugShowCheckedModeBanner: false,
         home: Scaffold(
+          resizeToAvoidBottomInset: false,
             appBar: AppBar(
                 backgroundColor: Colors.teal,
                 title: Text("MyCovid Doctor's App")),
-            body: profileView()));
+            body:
+             profileView()));
   }
 
   Widget profileView() {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.fromLTRB(30, 50, 30, 30),
+          padding: EdgeInsets.fromLTRB(30, 30, 30, 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -43,31 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
-          child: Stack(
-            children: <Widget>[
-              CircleAvatar(
-                radius: 70,
-                child: ClipOval(
-                  child: Image.asset(
-                    'assets/images/doc.jpg',
-                    height: 150,
-                    width: 150,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Positioned(
-                  bottom: 1,
-                  right: 1,
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                  ))
-            ],
-          ),
-        ),
+   
         Expanded(
             child: Container(
           decoration: BoxDecoration(
@@ -76,39 +54,185 @@ class _MyHomePageState extends State<MyHomePage> {
               gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [Colors.black54, Color.fromRGBO(0, 41, 102, 1)])),
+                  colors: [Colors.black54, Color.fromRGBO(0, 41, 50, 1)])),
           child: Column(
             children: <Widget>[
+              
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 25, 20, 4),
+                padding: const EdgeInsets.fromLTRB(20, 15, 20, 4),
                 child: Container(
-                  height: 60,
+                  height: 55,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                         decoration: InputDecoration(hintText: 'spO2 (%)',
+                          hintStyle: TextStyle(
+                    color: Colors.white70
+                  ),
+                  border: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        errorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+                         ),
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                       
+         
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white70)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                child: Container(
+                  height: 55,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                       decoration: InputDecoration(hintText: 'Blood Pressure(mm Hg)',
+                        hintStyle: TextStyle(
+                    color: Colors.white70
+                  ),
+                  border: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        errorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+                       ),
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                    
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white70)),
+                ),
+              ),
+       Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                child: Container(
+                  height: 55,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                         decoration: InputDecoration(hintText: 'Respiratory Rate (cycles)',fillColor: Colors.white,
+                          hintStyle: TextStyle(
+                    color: Colors.white70
+                  ),
+                  border: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        errorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+                         ),
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white70)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                child: Container(
+                  height: 55,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                         decoration: InputDecoration(hintText: 'Pulse Rate (BPM)',
+                          hintStyle: TextStyle(
+                    color: Colors.white70
+                  ),
+                  border: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        errorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+                         ),
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white70)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                child: Container(
+                  height: 55,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                         decoration: InputDecoration(hintText: 'O2 (litres)',fillColor: Colors.white,
+                          hintStyle: TextStyle(
+                    color: Colors.white70
+                  ),
+                  border: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        errorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+                  ),
+                        style: TextStyle(color: Colors.white),
+                        
+                      ),
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white70)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                child: Container(
+                  height: 55,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         widget.myData.FirstName + " " + widget.myData.LastName,
-                        style: TextStyle(color: Colors.white70),
+                        style: TextStyle(color: Colors.white,fontSize: 18),
                       ),
                     ),
                   ),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
+                      border: Border.all(width: 1.0, color: Colors.white)),
                 ),
               ),
+              
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
                 child: Container(
-                  height: 60,
+                  height: 55,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         "${widget.myData.PatientId}",
-                        style: TextStyle(color: Colors.white70),
+                        style: TextStyle(color: Colors.white,fontSize: 18),
                       ),
                     ),
                   ),
@@ -117,47 +241,26 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 1.0, color: Colors.white70)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
-                child: Container(
-                  height: 60,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        ' Oxygen level ',
-                        style: TextStyle(color: Colors.white70),
+              Expanded(
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: MaterialButton(
+                            
+                            color: Colors.teal,
+                            textColor: Colors.white,
+                            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                            child: Container(
+                              child: Text(
+                                'Update Vitals',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                            onPressed: () => {},
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
-                child: Container(
-                  height: 60,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Blood pressure',
-                        style: TextStyle(color: Colors.white70),
-                      ),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
-                ),
-              ),
-       
               Container(
-                padding: EdgeInsets.fromLTRB(5, 50, 5, 5),
+                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Row(
@@ -171,7 +274,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             color: Colors.teal,
                             textColor: Colors.white,
-                            padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                            padding: EdgeInsets.fromLTRB(20, 3, 10, 3),
                             child: Container(
                               child: Text(
                                 'Consult Senior Doctor',
@@ -191,7 +294,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             color: Colors.teal,
                             textColor: Colors.white,
-                            padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                            padding: EdgeInsets.fromLTRB(20, 3, 10, 3),
                             child: Container(
                               child: Align(
                                 child: Text(
