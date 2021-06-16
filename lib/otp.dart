@@ -52,6 +52,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       letterSpacing: 2,
                       fontWeight: FontWeight.bold,
                     )),),
+             
               Container(
                 margin: EdgeInsets.only(top: 20, bottom: 20),
                 child: Text("Enter Your OTP",

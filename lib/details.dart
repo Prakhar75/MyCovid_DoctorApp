@@ -1,20 +1,15 @@
+//import 'dart:js_util';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mycovid/myjson.dart';
 
-void main() => runApp(new det());
 
-class det extends StatelessWidget {
-  @override
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: MyHomePage());
-  }
-}
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  myjson myData;
+  // MyHomePage({Key key, this.myData}) : super(key: key);
+  MyHomePage(this.myData);
 
   @override
   _MyHomePageState createState() => new _MyHomePageState();
@@ -23,10 +18,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.teal, title: Text("MyCovid Doctor's App")),
-        body: profileView());
+    return MaterialApp(
+       debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            appBar: AppBar(
+                backgroundColor: Colors.teal,
+                title: Text("MyCovid Doctor's App")),
+            body: profileView()));
   }
 
   Widget profileView() {
@@ -78,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
               gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [Colors.black54, Color.fromRGBO(0, 41, 50, 1)])),
+                  colors: [Colors.black54, Color.fromRGBO(0, 41, 102, 1)])),
           child: Column(
             children: <Widget>[
               Padding(
@@ -90,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Name',
+                        widget.myData.FirstName + " " + widget.myData.LastName,
                         style: TextStyle(color: Colors.white70),
                       ),
                     ),
@@ -109,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'IPD number',
+                        "${widget.myData.PatientId}",
                         style: TextStyle(color: Colors.white70),
                       ),
                     ),
@@ -157,63 +155,63 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 1.0, color: Colors.white70)),
                 ),
               ),
-     Container(
-        padding:
-          EdgeInsets.fromLTRB(5, 50,5, 5),
-          
-       child: Align(
-          alignment: Alignment.bottomCenter,
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Align(
-          alignment: Alignment.bottomLeft,
-                child: MaterialButton(
-                  shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),),
-                  color: Colors.teal,
-                textColor: Colors.white,
-                  padding:
-                   EdgeInsets.fromLTRB(20, 10,10, 10),
-                  child: Container( 
-                    child: Text('Consult Senior Doctor', style: TextStyle( fontSize: 20),),),
-                  onPressed: ()=>{},
-                ),
-            ),
-              ),
-              Expanded(
-        
-      
+       
+              Container(
+                padding: EdgeInsets.fromLTRB(5, 50, 5, 5),
                 child: Align(
-                  
-          alignment: Alignment.bottomRight,
-          
-                child: MaterialButton(
-              shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),),
-                  color: Colors.teal,
-                textColor: Colors.white,
-                 padding:
-                   EdgeInsets.fromLTRB(20, 10,10, 10),
-                  child: Container(
-                    child: Align(child: Text('Prompt To Relatives', style: TextStyle( fontSize: 20),),),
-                   
-                    ),
-                     onPressed: ()=>{},
+                  alignment: Alignment.bottomCenter,
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: MaterialButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            color: Colors.teal,
+                            textColor: Colors.white,
+                            padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                            child: Container(
+                              child: Text(
+                                'Consult Senior Doctor',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                            onPressed: () => {},
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child: MaterialButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            color: Colors.teal,
+                            textColor: Colors.white,
+                            padding: EdgeInsets.fromLTRB(20, 10, 10, 10),
+                            child: Container(
+                              child: Align(
+                                child: Text(
+                                  'Prompt To Relatives',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            onPressed: () => {},
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                ),
-        ],
-      ),
-       ),
-    ),
+              ),
             ],
           ),
-          
         )),
- 
       ],
     );
-    
   }
 }

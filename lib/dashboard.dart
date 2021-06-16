@@ -20,12 +20,9 @@ class dash extends StatelessWidget {
         floatingActionButton: Container(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10.0),
           child: Column(
-            
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              
               FloatingActionButton(
-                
                 backgroundColor: Colors.teal[600],
                 child: Icon(Icons.qr_code_2_rounded),
                 onPressed: () {
@@ -35,12 +32,11 @@ class dash extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(16))),
                 elevation: 5,
                 highlightElevation: 10,
-
               ),
               SizedBox(
-          width: 20,
-          height: 10,
-        ),
+                width: 20,
+                height: 10,
+              ),
               FloatingActionButton(
                 backgroundColor: Colors.teal[600],
                 child: Icon(Icons.add_box),
@@ -73,6 +69,7 @@ class ListSearchState extends State<ListSearch> {
   TextEditingController _textController = TextEditingController();
 
   List<myjson> myALLDATA = [];
+  List<myjson> mycopy = [];
   static List<String> mainDataList = [];
 
   getUsers() async {
@@ -90,13 +87,14 @@ class ListSearchState extends State<ListSearch> {
           data['AdmissionDatetime'],
           data['PhoneNumber'],
           data['RelativePhoneNumber'],
-          data['PatientID']));
+          data['PatientId']));
     }
     setState(() {
       //patientData = data['patients'];
     });
-    myALLDATA.forEach((someData) => mainDataList.add(someData.FirstName));
-    mainDataList.forEach((element) => print(element));
+  
+    myALLDATA.forEach((someData) => mycopy.add(someData));
+    //newDataList.forEach((element) => print(element));
   }
 
   @override
@@ -105,18 +103,20 @@ class ListSearchState extends State<ListSearch> {
     getUsers();
   }
 
-  // Copy Main List into New List.
-  List<String> newDataList = List.from(mainDataList);
+
 
   onItemChanged(String value) {
     setState(() {
-      newDataList = mainDataList
-          .where((string) => string.toLowerCase().contains(value.toLowerCase()))
+      mycopy = myALLDATA
+          .where((row) => (row.FirstName + " " + row.LastName)
+              .toLowerCase()
+              .contains(value.toLowerCase()))
           .toList();
     });
+    //newDataList.forEach((element) => print(element));
   }
 
-// to
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,15 +137,15 @@ class ListSearchState extends State<ListSearch> {
           Expanded(
             child: ListView(
               padding: EdgeInsets.all(12.0),
-              children: newDataList.map((data) {
+              children: mycopy.map((data) {
                 return ListTile(
-                    title: Text(data),
+                    title: Text(data.FirstName + " " + data.LastName),
                     onTap: () => {
                           print(data),
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => det(),
+                              builder: (context) => MyHomePage(data),
                             ),
                           )
                         });

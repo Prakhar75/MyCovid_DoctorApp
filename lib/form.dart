@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-void main() => runApp(FormScreen());
+import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+import 'package:mycovid/dashboard.dart';
+
+//void main() => runApp(FormScreen());
 
 class FormScreen extends StatefulWidget {
   @override
@@ -18,6 +22,30 @@ class FormScreenState extends State<FormScreen> {
   String _rname;
   String _phoneNumber;
   String _rno;
+
+  Dio dio = new Dio();
+
+  Future postData() async {
+    final String Url =
+        'https://my-covid-web-api.herokuapp.com/patients/newPatient';
+
+    dynamic data = {
+      "FirstName": _name,
+      "MiddleName": _namem,
+      "LastName": _namel,
+      "PhoneNumber": _phoneNumber,
+      "RelativeName": _rname,
+      "RelativePhoneNumber": _rno,
+      "Relationship": _rel
+    };
+
+    var response = await dio.post(Url,
+        data: data,
+        options: Options(
+          headers: {'content-type': 'application/json; charset=UTF-8'},
+        ));
+    return response.data;
+  }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -83,7 +111,7 @@ class FormScreenState extends State<FormScreen> {
   //   );
   // }
 
-  Widget _buildPassword() {
+  /*Widget _buildIPD() {
     return TextFormField(
       decoration: InputDecoration(labelText: 'IPD number'),
       keyboardType: TextInputType.visiblePassword,
@@ -98,9 +126,9 @@ class FormScreenState extends State<FormScreen> {
         _ipd = value;
       },
     );
-  }
+  }*/
 
-  Widget _builURL() {
+  Widget _builRelname() {
     return TextFormField(
       decoration: InputDecoration(labelText: "Relative's Name"),
       keyboardType: TextInputType.name,
@@ -135,7 +163,7 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
-  Widget _buildCalories() {
+  Widget _buildRelphNo() {
     return TextFormField(
       decoration: InputDecoration(labelText: "Relative's phone number"),
       maxLength: 10,
@@ -153,7 +181,7 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
-  Widget _buildEmail() {
+  Widget _buildRelre() {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Relationship with relative'),
       validator: (String value) {
@@ -185,24 +213,30 @@ class FormScreenState extends State<FormScreen> {
                 _buildName(),
                 _buildNamem(),
                 _buildNamel(),
-                _buildPassword(),
-                
+                //_buildIPD(),
                 _buildPhoneNumber(),
-                _builURL(),
-                _buildCalories(),
-                _buildEmail(),
+                _builRelname(),
+                _buildRelphNo(),
+                _buildRelre(),
                 SizedBox(height: 100),
                 RaisedButton(
                   child: Text(
                     'Submit',
                     style: TextStyle(color: Colors.blue, fontSize: 16),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    _formKey.currentState.save();
                     if (!_formKey.currentState.validate()) {
                       return;
+                    } else {
+                      await postData();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => dash(),
+                        ),
+                      );
                     }
-
-                    _formKey.currentState.save();
 
                     print(_name);
                     print(_namem);
