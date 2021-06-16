@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 void main() => runApp(FormScreen());
 
 class FormScreen extends StatefulWidget {
@@ -10,18 +11,19 @@ class FormScreen extends StatefulWidget {
 
 class FormScreenState extends State<FormScreen> {
   String _name;
-  String _email;
-  String _password;
-  String _url;
+  String _namem;
+  String _namel;
+  String _rel;
+  String _ipd;
+  String _rname;
   String _phoneNumber;
-  String _calories;
+  String _rno;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildName() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Name'),
-      
+      decoration: InputDecoration(labelText: 'First Name'),
       validator: (String value) {
         if (value.isEmpty) {
           return 'Name is Required';
@@ -35,27 +37,51 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
-  Widget _buildEmail() {
+  Widget _buildNamem() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Email'),
+      decoration: InputDecoration(labelText: 'Middle Name'),
       validator: (String value) {
-        if (value.isEmpty) {
-          return 'Email is Required';
-        }
-
-        if (!RegExp(
-                r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-            .hasMatch(value)) {
-          return 'Please enter a valid email Address';
-        }
-
         return null;
       },
       onSaved: (String value) {
-        _email = value;
+        _namem = value;
       },
     );
   }
+
+  Widget _buildNamel() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'Last Name'),
+      validator: (String value) {
+        return null;
+      },
+      onSaved: (String value) {
+        _namel = value;
+      },
+    );
+  }
+
+  // Widget _buildEmail() {
+  //   return TextFormField(
+  //     decoration: InputDecoration(labelText: 'Email'),
+  //     validator: (String value) {
+  //       if (value.isEmpty) {
+  //         return 'Email is Required';
+  //       }
+
+  //       if (!RegExp(
+  //               r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+  //           .hasMatch(value)) {
+  //         return 'Please enter a valid email Address';
+  //       }
+
+  //       return null;
+  //     },
+  //     onSaved: (String value) {
+  //       _email = value;
+  //     },
+  //   );
+  // }
 
   Widget _buildPassword() {
     return TextFormField(
@@ -69,15 +95,15 @@ class FormScreenState extends State<FormScreen> {
         return null;
       },
       onSaved: (String value) {
-        _password = value;
+        _ipd = value;
       },
     );
   }
 
   Widget _builURL() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'O2 level'),
-      keyboardType: TextInputType.url,
+      decoration: InputDecoration(labelText: "Relative's Name"),
+      keyboardType: TextInputType.name,
       validator: (String value) {
         if (value.isEmpty) {
           return 'data is Required';
@@ -86,7 +112,7 @@ class FormScreenState extends State<FormScreen> {
         return null;
       },
       onSaved: (String value) {
-        _url = value;
+        _rname = value;
       },
     );
   }
@@ -94,7 +120,7 @@ class FormScreenState extends State<FormScreen> {
   Widget _buildPhoneNumber() {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Phone number'),
-       maxLength: 10,
+      maxLength: 10,
       keyboardType: TextInputType.phone,
       validator: (String value) {
         if (value.isEmpty) {
@@ -104,26 +130,41 @@ class FormScreenState extends State<FormScreen> {
         return null;
       },
       onSaved: (String value) {
-        _url = value;
+        _phoneNumber = value;
       },
     );
   }
 
   Widget _buildCalories() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Calories'),
-      keyboardType: TextInputType.number,
+      decoration: InputDecoration(labelText: "Relative's phone number"),
+      maxLength: 10,
+      keyboardType: TextInputType.phone,
       validator: (String value) {
-        int calories = int.tryParse(value);
-
-        if (calories == null || calories <= 0) {
-          return 'Calories must be greater than 0';
+        if (value.isEmpty) {
+          return 'Phone number is Required';
         }
 
         return null;
       },
       onSaved: (String value) {
-        _calories = value;
+        _rno = value;
+      },
+    );
+  }
+
+  Widget _buildEmail() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'Relationship with relative'),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return 'data is Required';
+        }
+
+        return null;
+      },
+      onSaved: (String value) {
+        _rel = value;
       },
     );
   }
@@ -131,7 +172,8 @@ class FormScreenState extends State<FormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.teal, title: Text("MyCovid Doctor's App")),
+      appBar: AppBar(
+          backgroundColor: Colors.teal, title: Text("Enter Patient details")),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.all(24),
@@ -141,11 +183,14 @@ class FormScreenState extends State<FormScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 _buildName(),
-                _buildEmail(),
+                _buildNamem(),
+                _buildNamel(),
                 _buildPassword(),
-                _builURL(),
+                
                 _buildPhoneNumber(),
+                _builURL(),
                 _buildCalories(),
+                _buildEmail(),
                 SizedBox(height: 100),
                 RaisedButton(
                   child: Text(
@@ -160,13 +205,13 @@ class FormScreenState extends State<FormScreen> {
                     _formKey.currentState.save();
 
                     print(_name);
-                    print(_email);
+                    print(_namem);
+                    print(_namel);
+                    print(_ipd);
                     print(_phoneNumber);
-                    print(_url);
-                    print(_password);
-                    print(_calories);
-
-                  
+                    print(_rname);
+                    print(_rno);
+                    print(_rel);
                   },
                 )
               ],

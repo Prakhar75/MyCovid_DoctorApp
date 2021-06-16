@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
               gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [Colors.black54, Color.fromRGBO(0, 41, 102, 1)])),
+                  colors: [Colors.black54, Color.fromRGBO(0, 41, 50, 1)])),
           child: Column(
             children: <Widget>[
               Padding(
@@ -157,11 +157,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 1.0, color: Colors.white70)),
                 ),
               ),
-     Expanded(
+     Container(
+        padding:
+          EdgeInsets.fromLTRB(5, 50,5, 5),
+          
+       child: Align(
+          alignment: Alignment.bottomCenter,
       child: Row(
         children: <Widget>[
           Expanded(
+            child: Align(
+          alignment: Alignment.bottomLeft,
                 child: MaterialButton(
+                  shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),),
                   color: Colors.teal,
                 textColor: Colors.white,
                   padding:
@@ -170,13 +179,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text('Consult Senior Doctor', style: TextStyle( fontSize: 20),),),
                   onPressed: ()=>{},
                 ),
+            ),
               ),
               Expanded(
+        
+      
+                child: Align(
+                  
+          alignment: Alignment.bottomRight,
+          
                 child: MaterialButton(
+              shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),),
                   color: Colors.teal,
                 textColor: Colors.white,
                  padding:
-                   EdgeInsets.fromLTRB(20, 10,20, 10),
+                   EdgeInsets.fromLTRB(20, 10,10, 10),
                   child: Container(
                     child: Align(child: Text('Prompt To Relatives', style: TextStyle( fontSize: 20),),),
                    
@@ -184,8 +202,10 @@ class _MyHomePageState extends State<MyHomePage> {
                      onPressed: ()=>{},
                   ),
                 ),
+                ),
         ],
       ),
+       ),
     ),
             ],
           ),
