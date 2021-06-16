@@ -46,6 +46,16 @@ class _OTPScreenState extends State<OTPScreen> {
             children: [
               Container(
                 margin: EdgeInsets.only(top: 20, bottom: 20),
+                child: Text("Welcome Dr. Abhinav",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      letterSpacing: 2,
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 20, bottom: 20),
                 child: Text("Enter Your OTP",
                     style: TextStyle(
                       color: Colors.white,

@@ -79,7 +79,7 @@ class _MyState extends State<LoginScreen> {
                   color: Colors.teal.shade100,
                 ),
               ),
-              Card(
+              /*Card(
                 margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
                 child: ListTile(
                   leading: Icon(
@@ -94,7 +94,7 @@ class _MyState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-              ),
+              ),*/
               Container(
                   padding: const EdgeInsets.all(30.0),
                   child: Form(
