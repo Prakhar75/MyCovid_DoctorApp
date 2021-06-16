@@ -79,22 +79,22 @@ class _MyState extends State<LoginScreen> {
                   color: Colors.teal.shade100,
                 ),
               ),
-              Card(
-                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.healing,
-                    color: Colors.teal,
-                  ),
-                  title: Text(
-                    'hospitalemail@gmail.com',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.teal.shade900,
-                    ),
-                  ),
-                ),
-              ),
+              // Card(
+              //   margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+              //   child: ListTile(
+              //     leading: Icon(
+              //       Icons.healing,
+              //       color: Colors.teal,
+              //     ),
+              //     title: Text(
+              //       'hospitalemail@gmail.com',
+              //       style: TextStyle(
+              //         fontSize: 20.0,
+              //         color: Colors.teal.shade900,
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Container(
                   padding: const EdgeInsets.all(30.0),
                   child: Form(

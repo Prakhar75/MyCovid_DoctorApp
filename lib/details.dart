@@ -7,10 +7,7 @@ class det extends StatelessWidget {
   @override
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage()
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: MyHomePage());
   }
 }
 
@@ -24,18 +21,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
- 
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
             backgroundColor: Colors.teal, title: Text("MyCovid Doctor's App")),
-      body: profileView()
-    );
+        body: profileView());
   }
- 
+
   Widget profileView() {
     return Column(
       children: <Widget>[
@@ -44,36 +37,48 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              
-              Text('   PROFILE  DETAILS', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
-              Container(height: 24,width: 24)
+              Text(
+                '   PROFILE  DETAILS',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Container(height: 24, width: 24)
             ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0,0 ,50),
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
           child: Stack(
             children: <Widget>[
               CircleAvatar(
                 radius: 70,
-                child: ClipOval(child: Image.asset('assets/images/doc.jpg', height: 150, width: 150, fit: BoxFit.cover,),),
+                child: ClipOval(
+                  child: Image.asset(
+                    'assets/images/doc.jpg',
+                    height: 150,
+                    width: 150,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-              Positioned(bottom: 1, right: 1 ,child: Container(
-                height: 40, width: 40,
-                
-              ))
+              Positioned(
+                  bottom: 1,
+                  right: 1,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                  ))
             ],
           ),
         ),
-        Expanded(child: Container(
+        Expanded(
+            child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.black54, Color.fromRGBO(0, 41, 102, 1)]
-            )
-          ),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [Colors.black54, Color.fromRGBO(0, 41, 102, 1)])),
           child: Column(
             children: <Widget>[
               Padding(
@@ -84,9 +89,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('Name', style: TextStyle(color: Colors.white70),),
+                      child: Text(
+                        'Name',
+                        style: TextStyle(color: Colors.white70),
+                      ),
                     ),
-                  ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.white70)),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white70)),
                 ),
               ),
               Padding(
@@ -97,9 +108,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('IPD number', style: TextStyle(color: Colors.white70),),
+                      child: Text(
+                        'IPD number',
+                        style: TextStyle(color: Colors.white70),
+                      ),
                     ),
-                  ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.white70)),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white70)),
                 ),
               ),
               Padding(
@@ -110,9 +127,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(' Oxygen level ', style: TextStyle(color: Colors.white70),),
+                      child: Text(
+                        ' Oxygen level ',
+                        style: TextStyle(color: Colors.white70),
+                      ),
                     ),
-                  ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.white70)),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white70)),
                 ),
               ),
               Padding(
@@ -123,40 +146,54 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('Blood pressure', style: TextStyle(color: Colors.white70),),
+                      child: Text(
+                        'Blood pressure',
+                        style: TextStyle(color: Colors.white70),
+                      ),
                     ),
-                  ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.white70)),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white70)),
+                ),
+              ),
+     Expanded(
+      child: Row(
+        children: <Widget>[
+          Expanded(
+                child: MaterialButton(
+                  color: Colors.teal,
+                textColor: Colors.white,
+                  padding:
+                   EdgeInsets.fromLTRB(20, 10,10, 10),
+                  child: Container( 
+                    child: Text('Consult Senior Doctor', style: TextStyle( fontSize: 20),),),
+                  onPressed: ()=>{},
                 ),
               ),
               Expanded(
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container( height: 70, width: 200,
-                    child: Align(child: Text('consult senior doctor', style: TextStyle(color: Colors.white70, fontSize: 20),),),
-                    decoration: BoxDecoration(
-                      color: Colors.teal,
-                      borderRadius: BorderRadius.all(Radius.circular(30),)
+                child: MaterialButton(
+                  color: Colors.teal,
+                textColor: Colors.white,
+                 padding:
+                   EdgeInsets.fromLTRB(20, 10,20, 10),
+                  child: Container(
+                    child: Align(child: Text('Prompt To Relatives', style: TextStyle( fontSize: 20),),),
+                   
                     ),
+                     onPressed: ()=>{},
                   ),
                 ),
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Container( height: 70, width: 200,
-                    child: Align(child: Text('prompt to relatives', style: TextStyle(color: Colors.white70, fontSize: 20),),),
-                    decoration: BoxDecoration(
-                      color: Colors.teal,
-                      borderRadius: BorderRadius.all( Radius.circular(30),)
-                    ),
-                  ),
-                ),
-              )
-
+        ],
+      ),
+    ),
             ],
           ),
-        ))
+          
+        )),
+ 
       ],
     );
+    
   }
 }
