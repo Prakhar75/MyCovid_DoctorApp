@@ -13,9 +13,31 @@ class dash extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
             backgroundColor: Colors.teal, title: Text("MyCovid Doctor's App")),
-        body: Center(child: ListSearch()),
+        body: Stack(
+          children:<Widget>[
+            
+              Positioned.fill( 
+                 
+            child: Container(
+               decoration: new BoxDecoration(
+      color: Colors.white,
+      image:DecorationImage(
+         colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
+              image: AssetImage('assets/images/doc1.jpg'),
+              fit : BoxFit.fill,
+      ),
+               )
+            ),
+           
+          ), 
+           ListSearch(),
+          ],
+        ),
+
+
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: Container(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10.0),
@@ -120,8 +142,10 @@ class ListSearchState extends State<ListSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      
+      backgroundColor: Colors.transparent,
       body: Column(
+        
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(12.0),
@@ -134,6 +158,7 @@ class ListSearchState extends State<ListSearch> {
               onChanged: onItemChanged,
             ),
           ),
+          
           Expanded(
             child: ListView(
               padding: EdgeInsets.all(12.0),
