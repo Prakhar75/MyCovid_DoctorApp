@@ -88,14 +88,55 @@ class _MyHomePageState extends State<MyHomePage> {
                   colors: [Colors.black54, Color.fromRGBO(0, 41, 50, 1)])),
           child: Column(
             children: <Widget>[
+
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 15, 20, 4),
+                padding: const EdgeInsets.fromLTRB(20, 13, 20, 4),
                 child: Container(
-                  height: 55,
+                  height: 45,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      child: Text(
+                        widget.myData.FirstName + " " + widget.myData.LastName,
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                child: Container(
+                  height: 45,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                     padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      child: Text(
+                        "${widget.myData.PatientId}",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.white70)),
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                
+                child: Container(
+                  height: 45,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                     padding: const EdgeInsets.fromLTRB(15,5,0,5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'spO2 (%)',
@@ -127,13 +168,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
                 child: Container(
-                  height: 55,
+                  height: 45,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                     padding: const EdgeInsets.fromLTRB(15,5,0,5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Blood Pressure Systolic(mm Hg)',
@@ -165,13 +206,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
                 child: Container(
-                  height: 55,
+                  height: 45,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                     padding: const EdgeInsets.fromLTRB(15,5,0,5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Blood Pressure Diastolic(mm Hg)',
@@ -203,13 +244,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
                 child: Container(
-                  height: 55,
+                  height: 45,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.fromLTRB(15,5,0,5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Respiratory Rate (cycles)',
@@ -242,13 +283,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
                 child: Container(
-                  height: 55,
+                  height: 45,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                   padding: const EdgeInsets.fromLTRB(15,5,0,5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Pulse Rate (BPM)',
@@ -280,17 +321,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
                 child: Container(
-                  height: 55,
+                  height: 45,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.fromLTRB(15,5,0,5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'O2 (litres)',
-                          fillColor: Colors.white,
                           hintStyle: TextStyle(color: Colors.white70),
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
@@ -298,7 +338,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                         ),
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white70),
                         keyboardType: TextInputType.number,
                         validator: (String value) {
                           if (value.isEmpty) {
@@ -319,13 +359,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
+                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
                 child: Container(
-                  height: 55,
+                  height: 45,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                     padding: const EdgeInsets.fromLTRB(15,5,0,5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Temperature',
@@ -356,44 +396,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 1.0, color: Colors.white70)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
-                child: Container(
-                  height: 55,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        widget.myData.FirstName + " " + widget.myData.LastName,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
-                child: Container(
-                  height: 55,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "${widget.myData.PatientId}",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
-                ),
-              ),
+              
               Expanded(
                 child: Align(
                   alignment: Alignment.center,
@@ -420,7 +423,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                padding: EdgeInsets.fromLTRB(5, 0, 5, 5),
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Row(
@@ -430,7 +433,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           alignment: Alignment.bottomLeft,
                           child: MaterialButton(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+                              // borderRadius: BorderRadius.circular(20.0),
                             ),
                             color: Colors.teal,
                             textColor: Colors.white,
@@ -450,7 +453,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           alignment: Alignment.bottomRight,
                           child: MaterialButton(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
+                              // borderRadius: BorderRadius.circular(20.0),
                             ),
                             color: Colors.teal,
                             textColor: Colors.white,
