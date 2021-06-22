@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'mainpage.dart';
 import 'package:mycovid/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pinput/pin_put/pin_put.dart';
@@ -44,15 +45,16 @@ class _OTPScreenState extends State<OTPScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container( margin: EdgeInsets.only(top: 20, bottom: 20),
+              Container(
+                margin: EdgeInsets.only(top: 20, bottom: 20),
                 child: Text("Welcome Dr. Abhinav",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,
                       letterSpacing: 2,
                       fontWeight: FontWeight.bold,
-                    )),),
-             
+                    )),
+              ),
               Container(
                 margin: EdgeInsets.only(top: 20, bottom: 20),
                 child: Text("Enter Your OTP",
@@ -86,7 +88,7 @@ class _OTPScreenState extends State<OTPScreen> {
                         if (value.user != null) {
                           Navigator.pushAndRemoveUntil(
                               context,
-                              MaterialPageRoute(builder: (context) => Home()),
+                              MaterialPageRoute(builder: (context) => dashb()),
                               (route) => false);
                         }
                       });
