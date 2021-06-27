@@ -4,11 +4,23 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:mycovid/myjson.dart';
 import 'package:mycovid/form.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() => runApp(dash());
 
 class dash extends StatelessWidget {
+  
+
+String uid;
   @override
+  TextEditingController editingController = TextEditingController();
+  TabController controller;
+  List<String> listItems = [
+    // enter patient names here from database
+  ];
+
+@override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -44,17 +56,7 @@ class dash extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              FloatingActionButton(
-                backgroundColor: Colors.teal[600],
-                child: Icon(Icons.qr_code_2_rounded),
-                onPressed: () {
-                  print("Clicked");
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(16))),
-                elevation: 5,
-                highlightElevation: 10,
-              ),
+             
               SizedBox(
                 width: 20,
                 height: 10,
@@ -80,6 +82,12 @@ class dash extends StatelessWidget {
         ),
       ),
     );
+  }
+@override
+  void initState() {
+    // TODO: implement initState
+     
+    uid = FirebaseAuth.instance.currentUser.uid;
   }
 }
 

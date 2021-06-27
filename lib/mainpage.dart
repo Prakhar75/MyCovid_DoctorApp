@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'dashboard.dart';
 
 void main() => runApp(dashb());
 
@@ -9,40 +9,45 @@ class dashb extends StatelessWidget {
     debugShowCheckedModeBanner:
     false;
     return Scaffold(
-        backgroundColor: Colors.grey[700],
+        backgroundColor: Colors.grey[600],
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-            backgroundColor: Colors.teal, title: Text("MyCovid Doctor's App")),
+            backgroundColor: Colors.teal[700], title: Text("MyCovid Doctor's App")
+            ),
         body: SafeArea(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // Padding(
-            //   padding: const EdgeInsets.all(12.0),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: <Widget>[
-            //       Icon(
-            //         Icons.menu,
-            //         color: Colors.white,
-            //         size: 52.0,
-            //       ),
-            //       Image.asset(
-            //         "assets/images/doc1.jpg",
-            //         width: 52.0,
-            //       )
-            //     ],
-            //   ),
-            // ),
+           
             Padding(
               padding: const EdgeInsets.all(18.0),
-              child: Text(
-                "Welcome, Dr.Abhinav  \nSelect an option",
+              child:Column( 
+                 mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+               Text(
+                // make children widget for better styling here..
+                "       Welcome, Dr.Abhinav ",
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.grey[900],
                     fontSize: 28.0,
+                    
                     fontWeight: FontWeight.bold),
                 textAlign: TextAlign.start,
+              ),
+              SizedBox(
+                height: 15,
+      
+              ),
+              Text(
+                    "    Select an option ",
+                style: TextStyle(
+                    color: Colors.grey[400],
+                    fontSize: 24.0,
+                    
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.start,
+              ),
+                ],
               ),
             ),
             Padding(
@@ -54,10 +59,10 @@ class dashb extends StatelessWidget {
                   children: <Widget>[
                     SizedBox(
                       width: 160.0,
-                      height: 190.0,
+                      height: 170.0,
                       child: Card(
                           color: Colors.grey[400],
-                        elevation: 2.0,
+                        elevation: 10.0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         child: Center(
@@ -66,14 +71,14 @@ class dashb extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               Image.asset(
-                                "assets/images/qr.png",
+                                "assets/images/ward.png",
                                 width: 64.0,
                               ),
                               SizedBox(
                                 height: 10.0,
                               ),
                               Text(
-                                "QR code",
+                                "Ward List",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -83,7 +88,7 @@ class dashb extends StatelessWidget {
                                 height: 5.0,
                               ),
                               Text(
-                                "Tap to scan",
+                                "Tap to view the status",
                                 style: TextStyle(
                                     color: Colors.black,
                                   ),
@@ -95,10 +100,10 @@ class dashb extends StatelessWidget {
                     ),
                     SizedBox(
                       width: 160.0,
-                      height: 190.0,
+                      height: 170.0,
                       child: Card(
                         color: Colors.grey[400],
-                        elevation: 2.0,
+                        elevation: 10.0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         child: Center(
@@ -109,7 +114,7 @@ class dashb extends StatelessWidget {
                             //  print("tapped");
                             Navigator.pushAndRemoveUntil(
                                 context,
-                                MaterialPageRoute(builder: (context) => Home()),
+                                MaterialPageRoute(builder: (context) => dash()),
                                 (route) => false);
                           },
                           child: Column(
@@ -122,7 +127,7 @@ class dashb extends StatelessWidget {
                                 height: 10.0,
                               ),
                               Text(
-                                "View Patient list",
+                                "Covid Rounds",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
@@ -145,10 +150,10 @@ class dashb extends StatelessWidget {
                     ),
                     SizedBox(
                       width: 160.0,
-                      height: 190.0,
+                      height: 170.0,
                       child: Card(
                               color: Colors.grey[400],
-                        elevation: 2.0,
+                        elevation: 10.0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         child: Center(
@@ -157,7 +162,7 @@ class dashb extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               Image.asset(
-                                "assets/images/doc.jpg",
+                                "assets/images/adddoc.png",
                                 width: 64.0,
                               ),
                               SizedBox(
@@ -184,12 +189,96 @@ class dashb extends StatelessWidget {
                         )),
                       ),
                     ),
-                    SizedBox(
+                     SizedBox(
                       width: 160.0,
-                      height: 190.0,
+                      height: 170.0,
                       child: Card(
-                                color: Colors.grey[400],
-                        elevation: 2.0,
+                              color: Colors.grey[400],
+                        elevation: 10.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        child: Center(
+                            child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
+                              Image.asset(
+                                "assets/images/patient.png",
+                                width: 64.0,
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                "Add Patients",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0),
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(
+                                "Add Patient details",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    ),
+                              )
+                            ],
+                          ),
+                        )),
+                      ),
+                    ),
+
+              SizedBox(
+                      width: 160.0,
+                      height: 170.0,
+                      child: Card(
+                          color: Colors.grey[400],
+                        elevation: 10.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        child: Center(
+                            child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
+                              Image.asset(
+                                "assets/images/qr.png",
+                                width: 64.0,
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                "Scan QR ",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0),
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(
+                                "Tap to scan",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                              )
+                            ],
+                          ),
+                        )),
+                      ),
+                    ),
+                   
+                     SizedBox(
+                      width: 160.0,
+                      height: 170.0,
+                      child: Card(
+                              color: Colors.grey[400],
+                        elevation: 10.0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0)),
                         child: Center(
@@ -215,10 +304,10 @@ class dashb extends StatelessWidget {
                                 height: 5.0,
                               ),
                               Text(
-                                "Tap to view about the App",
+                                "Tap to view",
                                 style: TextStyle(
                                     color: Colors.black,
-                                  ),
+                                    ),
                               )
                             ],
                           ),
