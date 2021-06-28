@@ -7,6 +7,8 @@ import 'package:mycovid/dashboard.dart';
 //void main() => runApp(FormScreen());
 
 class FormScreen extends StatefulWidget {
+  final String cookie;
+  FormScreen(this.cookie);
   @override
   State<StatefulWidget> createState() {
     return FormScreenState();
@@ -22,12 +24,12 @@ class FormScreenState extends State<FormScreen> {
   String _rname;
   String _phoneNumber;
   String _rno;
+  String ward_id;
 
   Dio dio = new Dio();
 
   Future postData() async {
-    final String Url =
-        'https://my-covid-web-api.herokuapp.com/patients/newPatient';
+    final String Url = 'https://my-covid-web.herokuapp.com/patients/newPatient';
 
     dynamic data = {
       "FirstName": _name,
@@ -36,14 +38,20 @@ class FormScreenState extends State<FormScreen> {
       "PhoneNumber": _phoneNumber,
       "RelativeName": _rname,
       "RelativePhoneNumber": _rno,
-      "Relationship": _rel
+      "Relationship": _rel,
+      "AdmissionDateTime": "2021-06-25 21:52:00",
+      "WardId": int.parse(ward_id)
     };
 
     var response = await dio.post(Url,
         data: data,
         options: Options(
-          headers: {'content-type': 'application/json; charset=UTF-8'},
+          headers: {
+            'content-type': 'application/json; charset=UTF-8',
+            'Cookie': "connect.sid=" + widget.cookie,
+          },
         ));
+    print(response.statusCode);
     return response.data;
   }
 
@@ -197,6 +205,22 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
+  Widget _wardID() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'Enter Ward Number'),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return 'data is Required';
+        }
+
+        return null;
+      },
+      onSaved: (String value) {
+        ward_id = value;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -218,6 +242,7 @@ class FormScreenState extends State<FormScreen> {
                 _builRelname(),
                 _buildRelphNo(),
                 _buildRelre(),
+                _wardID(),
                 SizedBox(height: 100),
                 RaisedButton(
                   child: Text(
@@ -233,7 +258,7 @@ class FormScreenState extends State<FormScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => dash(),
+                          builder: (context) => dash(widget.cookie),
                         ),
                       );
                     }

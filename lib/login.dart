@@ -1,6 +1,15 @@
+import 'dart:collection';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mycovid/mainpage.dart';
+//import 'package:mycovid/mynumber.dart';
 import 'package:mycovid/otp.dart';
+import 'dart:convert';
+import 'package:dio/dio.dart';
+//import 'package:mycovid/mynumber.dart';
+//import 'package:mycovid/api_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -10,6 +19,36 @@ class LoginScreen extends StatefulWidget {
 class _MyState extends State<LoginScreen> {
   // WELCOME and login page
   TextEditingController passController = new TextEditingController();
+  String cookie;
+  String status;
+  String hash;
+
+  //List<mynumber> mylogin = [];
+  //var list = new List(3);
+
+  Dio dio = new Dio();
+
+  Future postNum() async {
+    final String Url = 'https://my-covid-web.herokuapp.com/login';
+
+    dynamic num = {"phone": int.parse(passController.text)};
+    var response = await dio.post(Url,
+        data: num,
+        options: Options(
+          headers: {'content-type': 'application/json; charset=UTF-8'},
+        ));
+    /*mylogin.add(new mynumber(response.data["status"], response.data["message"],
+        response.data["data"]["hash"], passController.text));
+    print(mylogin);*/
+    status = response.data["status"];
+    hash = response.data["data"]["hash"];
+    print(response.headers);
+    //print(response.data.toString().substring(9, 16));
+    //status = response.data.toString().substring(9, 16);
+    print(response.headers.map['set-cookie'][0].split(';')[0].substring(12));
+    cookie = response.headers.map['Set-Cookie'][0].split(';')[0].substring(12);
+    return response.data;
+  }
 
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -125,20 +164,26 @@ class _MyState extends State<LoginScreen> {
                 color: Colors.teal,
                 textColor: Colors.white,
                 child: Text('Get OTP'),
-                onPressed: () => {
-                  if ((passController.text).length == 10)
-                    {
+                onPressed: () async {
+                  //print(status);
+                  if ((passController.text).length == 10) {
+                    await postNum();
+                    //print(status);
+                    //print("soham"),
+                    if (status == "success") {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OTPScreen(passController.text),
+                          builder: (context) =>
+                              OTPScreen(status, hash, passController.text),
                         ),
-                      ),
+                      );
+                    } else {
+                      passController.text = "invalid number";
                     }
-                  else
-                    {
-                      passController.text = "invalid number",
-                    }
+                  } else {
+                    passController.text = "invalid number";
+                  }
                 },
                 splashColor: Colors.tealAccent,
               ),

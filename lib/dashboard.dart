@@ -1,13 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mycovid/details.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:mycovid/myjson.dart';
 import 'package:mycovid/form.dart';
+import 'package:dio/dio.dart';
 
-void main() => runApp(dash());
+//void main() => runApp(dash(thi));
 
 class dash extends StatelessWidget {
+  final String cookie;
+  dash(this.cookie);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,34 +22,29 @@ class dash extends StatelessWidget {
         appBar: AppBar(
             backgroundColor: Colors.teal, title: Text("MyCovid Doctor's App")),
         body: Stack(
-          children:<Widget>[
-            
-              Positioned.fill( 
-                 
-            child: Container(
-               decoration: new BoxDecoration(
-      color: Colors.white,
-      image:DecorationImage(
-         colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
-              image: AssetImage('assets/images/doc1.jpg'),
-              fit : BoxFit.fill,
-      ),
-               )
+          children: <Widget>[
+            Positioned.fill(
+              child: Container(
+                  decoration: new BoxDecoration(
+                color: Colors.white,
+                image: DecorationImage(
+                  colorFilter: new ColorFilter.mode(
+                      Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                  image: AssetImage('assets/images/doc1.jpg'),
+                  fit: BoxFit.fill,
+                ),
+              )),
             ),
-           
-          ), 
-           ListSearch(),
+            ListSearch(cookie),
           ],
         ),
-
-
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: Container(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              FloatingActionButton(
+              /*FloatingActionButton(
                 backgroundColor: Colors.teal[600],
                 child: Icon(Icons.qr_code_2_rounded),
                 onPressed: () {
@@ -58,7 +58,7 @@ class dash extends StatelessWidget {
               SizedBox(
                 width: 20,
                 height: 10,
-              ),
+              ),*/
               FloatingActionButton(
                 backgroundColor: Colors.teal[600],
                 child: Icon(Icons.add_box),
@@ -66,7 +66,7 @@ class dash extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FormScreen(),
+                      builder: (context) => FormScreen(cookie),
                     ),
                   );
                 },
@@ -84,6 +84,8 @@ class dash extends StatelessWidget {
 }
 
 class ListSearch extends StatefulWidget {
+  final String cookie;
+  ListSearch(this.cookie);
   ListSearchState createState() => ListSearchState();
 }
 
@@ -94,12 +96,24 @@ class ListSearchState extends State<ListSearch> {
   List<myjson> mycopy = [];
   static List<String> mainDataList = [];
 
+  Dio dio = new Dio();
+
   getUsers() async {
-    http.Response response = await http
-        .get(Uri.parse('https://my-covid-web-api.herokuapp.com/patients'));
+    //Cookie("connect.sid", widget.cookie);
+    final String Url = "https://my-covid-web.herokuapp.com/patients/view";
+    var response = await dio.get(Url,
+        options: Options(
+          headers: {
+            'content-type': 'application/json; charset=UTF-8',
+            'Cookie': "connect.sid=" + widget.cookie,
+          },
+        ));
+    print(widget.cookie);
+    print(response.data);
+    print(response.data["data"].runtimeType);
     //debugPrint(response.body);
-    var jsonBody = jsonDecode(response.body);
-    for (var data in jsonBody) {
+    //var jsonBody = jsonDecode(response.data);
+    for (var data in response.data["data"]) {
       myALLDATA.add(new myjson(
           data['FirstName'],
           data['MiddleName'],
@@ -114,7 +128,7 @@ class ListSearchState extends State<ListSearch> {
     setState(() {
       //patientData = data['patients'];
     });
-  
+
     myALLDATA.forEach((someData) => mycopy.add(someData));
     //newDataList.forEach((element) => print(element));
   }
@@ -124,8 +138,6 @@ class ListSearchState extends State<ListSearch> {
     super.initState();
     getUsers();
   }
-
-
 
   onItemChanged(String value) {
     setState(() {
@@ -138,14 +150,11 @@ class ListSearchState extends State<ListSearch> {
     //newDataList.forEach((element) => print(element));
   }
 
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       backgroundColor: Colors.transparent,
       body: Column(
-        
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(12.0),
@@ -158,7 +167,6 @@ class ListSearchState extends State<ListSearch> {
               onChanged: onItemChanged,
             ),
           ),
-          
           Expanded(
             child: ListView(
               padding: EdgeInsets.all(12.0),
@@ -170,7 +178,8 @@ class ListSearchState extends State<ListSearch> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MyHomePage(data),
+                              builder: (context) =>
+                                  MyHomePage(widget.cookie, data),
                             ),
                           )
                         });
