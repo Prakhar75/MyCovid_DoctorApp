@@ -29,7 +29,7 @@ class _MyState extends State<LoginScreen> {
   Dio dio = new Dio();
 
   Future postNum() async {
-    final String Url = 'https://my-covid-web.herokuapp.com/login';
+    final String Url = 'https://my-covid-hospital-api.herokuapp.com/login';
 
     dynamic num = {"phone": int.parse(passController.text)};
     var response = await dio.post(Url,

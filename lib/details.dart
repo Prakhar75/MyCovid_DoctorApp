@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future postVitals() async {
     final String Url =
-        'https://my-covid-web-api.herokuapp.com/patients/UpdateVitals' +
+        'https://my-covid-hospital-api.herokuapp.com/patients/UpdateVitals' +
             '${widget.myData.PatientId}';
 
     dynamic vitals = {

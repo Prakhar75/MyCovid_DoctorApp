@@ -29,7 +29,8 @@ class FormScreenState extends State<FormScreen> {
   Dio dio = new Dio();
 
   Future postData() async {
-    final String Url = 'https://my-covid-web.herokuapp.com/patients/newPatient';
+    final String Url =
+        'https://my-covid-hospital-api.herokuapp.com/patients/newPatient';
 
     dynamic data = {
       "FirstName": _name,

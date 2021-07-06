@@ -29,7 +29,7 @@ class _OTPScreenState extends State<OTPScreen> {
   Dio dio = new Dio();
 
   Future postOtp() async {
-    final String Url = 'https://my-covid-web.herokuapp.com/verify';
+    final String Url = 'https://my-covid-hospital-api.herokuapp.com/verify';
     //Cookie("connect.sid", widget.cookie);
 
     dynamic otp = {

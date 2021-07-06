@@ -100,7 +100,8 @@ class ListSearchState extends State<ListSearch> {
 
   getUsers() async {
     //Cookie("connect.sid", widget.cookie);
-    final String Url = "https://my-covid-web.herokuapp.com/patients/view";
+    final String Url =
+        "https://my-covid-hospital-api.herokuapp.com/patients/view";
     var response = await dio.get(Url,
         options: Options(
           headers: {
