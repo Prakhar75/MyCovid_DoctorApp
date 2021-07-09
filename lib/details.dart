@@ -1,4 +1,4 @@
-//import 'dart:js_util';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,9 +7,11 @@ import 'package:dio/dio.dart';
 import 'package:mycovid/dashboard.dart';
 
 class MyHomePage extends StatefulWidget {
+  final String cookie;
+  MyHomePage(this.cookie, this.myData);
   myjson myData;
   // MyHomePage({Key key, this.myData}) : super(key: key);
-  MyHomePage(this.myData);
+  //MyHomePage(this.myData);
 
   @override
   _MyHomePageState createState() => new _MyHomePageState();
@@ -25,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
             appBar: AppBar(
                 backgroundColor: Colors.teal,
                 title: Text("MyCovid Doctor's App")),
-            body: profileView()));
+            body: profileView(widget.cookie)));
   }
 
   String spo2;
@@ -35,14 +37,14 @@ class _MyHomePageState extends State<MyHomePage> {
   String pul_rate;
   String o2;
   String temp;
+  String vital_status;
 
   Dio dio = new Dio();
 
   Future postVitals() async {
     final String Url =
-        'https://my-covid-web-api.herokuapp.com/patients/viewPatient/' +
-            '${widget.myData.PatientId}' +
-            '/updateVitals';
+        'https://my-covid-hospital-api.herokuapp.com/patients/UpdateVitals' +
+            '${widget.myData.PatientId}';
 
     dynamic vitals = {
       "PulseRate": pul_rate,
@@ -56,12 +58,16 @@ class _MyHomePageState extends State<MyHomePage> {
     var response = await dio.post(Url,
         data: vitals,
         options: Options(
-          headers: {'content-type': 'application/json; charset=UTF-8'},
+          headers: {
+            'content-type': 'application/json; charset=UTF-8',
+            'Cookie': "connect.sid=" + widget.cookie
+          },
         ));
+    vital_status = response.data["status"];
     return response.data;
   }
 
-  Widget profileView() {
+  Widget profileView(String cookie) {
     return Column(
       children: <Widget>[
         Padding(
@@ -88,7 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   colors: [Colors.black54, Color.fromRGBO(0, 41, 50, 1)])),
           child: Column(
             children: <Widget>[
-
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 13, 20, 4),
                 child: Container(
@@ -96,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                       child: Text(
                         widget.myData.FirstName + " " + widget.myData.LastName,
                         style: TextStyle(color: Colors.white, fontSize: 18),
@@ -115,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                     padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                       child: Text(
                         "${widget.myData.PatientId}",
                         style: TextStyle(color: Colors.white, fontSize: 18),
@@ -127,16 +132,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 1.0, color: Colors.white70)),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
-                
                 child: Container(
                   height: 45,
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                     padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'spO2 (%)',
@@ -174,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                     padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Blood Pressure Systolic(mm Hg)',
@@ -212,7 +215,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                     padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Blood Pressure Diastolic(mm Hg)',
@@ -250,7 +253,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Respiratory Rate (cycles)',
@@ -289,7 +292,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                   padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Pulse Rate (BPM)',
@@ -327,7 +330,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'O2 (litres)',
@@ -365,7 +368,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                     padding: const EdgeInsets.fromLTRB(15,5,0,5),
+                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Temperature',
@@ -396,7 +399,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(width: 1.0, color: Colors.white70)),
                 ),
               ),
-              
               Expanded(
                 child: Align(
                   alignment: Alignment.center,
@@ -412,12 +414,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     onPressed: () async {
                       await postVitals();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => dash(),
-                        ),
-                      );
+                      if (vital_status == "success") {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => dash(cookie),
+                          ),
+                        );
+                      }
                     },
                   ),
                 ),
@@ -433,8 +437,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           alignment: Alignment.bottomLeft,
                           child: MaterialButton(
                             shape: RoundedRectangleBorder(
-                              // borderRadius: BorderRadius.circular(20.0),
-                            ),
+                                // borderRadius: BorderRadius.circular(20.0),
+                                ),
                             color: Colors.teal,
                             textColor: Colors.white,
                             padding: EdgeInsets.fromLTRB(20, 3, 10, 3),
@@ -453,8 +457,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           alignment: Alignment.bottomRight,
                           child: MaterialButton(
                             shape: RoundedRectangleBorder(
-                              // borderRadius: BorderRadius.circular(20.0),
-                            ),
+                                // borderRadius: BorderRadius.circular(20.0),
+                                ),
                             color: Colors.teal,
                             textColor: Colors.white,
                             padding: EdgeInsets.fromLTRB(20, 3, 10, 3),

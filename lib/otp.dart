@@ -1,15 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'mainpage.dart';
 import 'dashboard.dart';
 import 'package:mycovid/home.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pinput/pin_put/pin_put.dart';
+import 'dart:convert';
+import 'package:dio/dio.dart';
 
 class OTPScreen extends StatefulWidget {
   // OTP page
   final String phone;
-  OTPScreen(this.phone);
+  final String status;
+  final String hash;
+
+  OTPScreen(this.status, this.hash, this.phone);
   @override
   _OTPScreenState createState() => _OTPScreenState();
 }
@@ -17,7 +24,35 @@ class OTPScreen extends StatefulWidget {
 class _OTPScreenState extends State<OTPScreen> {
   //TextEditingController passContro = new TextEditingController();
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
-  String _verificationCode;
+  String otp_status;
+  String cookie;
+
+  Dio dio = new Dio();
+
+  Future postOtp() async {
+    final String Url = 'https://my-covid-hospital-api.herokuapp.com/verify';
+    //Cookie("connect.sid", widget.cookie);
+
+    dynamic otp = {
+      "phone": int.parse(widget.phone),
+      "hash": widget.hash,
+      "otp": int.parse(_pinPutController.text)
+    };
+    var response = await dio.post(Url,
+        data: otp,
+        options: Options(
+          headers: {
+            'content-type': 'application/json; charset=UTF-8',
+          },
+        ));
+    print(response.headers);
+    cookie = response.headers.map['set-cookie'][0].split(';')[0].substring(12);
+    print(response.data);
+    otp_status = response.data["status"];
+
+    return response.data;
+  }
+
   final TextEditingController _pinPutController = TextEditingController();
   final FocusNode _pinPutFocusNode = FocusNode();
   final BoxDecoration pinPutDecoration = BoxDecoration(
@@ -81,22 +116,13 @@ class _OTPScreenState extends State<OTPScreen> {
                   followingFieldDecoration: pinPutDecoration,
                   pinAnimationType: PinAnimationType.fade,
                   onSubmit: (pin) async {
-                    try {
-                      await FirebaseAuth.instance
-                          .signInWithCredential(PhoneAuthProvider.credential(
-                              verificationId: _verificationCode, smsCode: pin))
-                          .then((value) async {
-                        if (value.user != null) {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (context) => dashb()),
-                              (route) => false);
-                        }
-                      });
-                    } catch (e) {
-                      FocusScope.of(context).unfocus();
-                      var showSnackBar = _scaffoldkey.currentState
-                          .showSnackBar(SnackBar(content: Text('invalid OTP')));
+                    await postOtp();
+                    if (otp_status == "success") {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => dashb(cookie)),
+                          (route) => false);
                     }
                   },
                 ),
@@ -108,7 +134,7 @@ class _OTPScreenState extends State<OTPScreen> {
     );
   }
 
-  _verifyPhone() async {
+  /*_verifyPhone() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
         phoneNumber: '+91${widget.phone}',
         verificationCompleted: (PhoneAuthCredential credential) async {
@@ -137,12 +163,12 @@ class _OTPScreenState extends State<OTPScreen> {
           });
         },
         timeout: Duration(seconds: 120));
-  }
+  }*/
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _verifyPhone();
+    //_verifyPhone();
   }
 }
