@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dashboard.dart';
+import 'form.dart';
+import 'formd.dart';
+import 'wards.dart';
 
 //void main() => runApp(dashb());
 
@@ -66,6 +69,15 @@ class dashb extends StatelessWidget {
                         child: Center(
                             child: Padding(
                           padding: const EdgeInsets.all(8.0),
+                          child: new InkWell(
+                              onTap: () {
+                                //  print("tapped");
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => wards()),
+                                    (route) => false);
+                              },
                           child: Column(
                             children: <Widget>[
                               Image.asset(
@@ -92,6 +104,7 @@ class dashb extends StatelessWidget {
                                 ),
                               )
                             ],
+                          ),
                           ),
                         )),
                       ),
@@ -157,6 +170,15 @@ class dashb extends StatelessWidget {
                         child: Center(
                             child: Padding(
                           padding: const EdgeInsets.all(8.0),
+                          child: new InkWell(
+                              onTap: () {
+                                //  print("tapped");
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => FormScreend(cookie)),
+                                    (route) => false);
+                              },
                           child: Column(
                             children: <Widget>[
                               Image.asset(
@@ -184,6 +206,7 @@ class dashb extends StatelessWidget {
                               )
                             ],
                           ),
+                          ),
                         )),
                       ),
                     ),
@@ -198,6 +221,15 @@ class dashb extends StatelessWidget {
                         child: Center(
                             child: Padding(
                           padding: const EdgeInsets.all(8.0),
+                          child: new InkWell(
+                              onTap: () {
+                                //  print("tapped");
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => FormScreen(cookie)),
+                                    (route) => false);
+                              },
                           child: Column(
                             children: <Widget>[
                               Image.asset(
@@ -224,7 +256,7 @@ class dashb extends StatelessWidget {
                                 ),
                               )
                             ],
-                          ),
+                          ),),
                         )),
                       ),
                     ),
