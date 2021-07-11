@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:dio/dio.dart';
 
 class wards extends StatefulWidget {
@@ -15,6 +14,7 @@ class _HomePageState extends State<wards> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[200],
       appBar: _buildBar(context),
       body: ListView(
         scrollDirection: Axis.vertical,
@@ -24,7 +24,7 @@ class _HomePageState extends State<wards> {
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.white,
+                    color: Colors.grey[200],
                     elevation: 14.0,
                     borderRadius: BorderRadius.circular(24.0),
                     shadowColor: Color(0x802196F3),
@@ -40,7 +40,7 @@ class _HomePageState extends State<wards> {
 
                         Container(
                           width: 250,
-                          height: 200,
+                          height: 130,
                           child: ClipRRect(
                             borderRadius: new BorderRadius.circular(24.0),
                             child: Image(
@@ -60,7 +60,7 @@ class _HomePageState extends State<wards> {
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.white,
+                    color: Colors.grey[200],
                     elevation: 14.0,
                     borderRadius: BorderRadius.circular(24.0),
                     shadowColor: Color(0x802196F3),
@@ -76,7 +76,7 @@ class _HomePageState extends State<wards> {
 
                         Container(
                           width: 250,
-                          height: 180,
+                          height: 130,
                           child: ClipRRect(
                             borderRadius: new BorderRadius.circular(24.0),
                             child: Image(
@@ -96,7 +96,7 @@ class _HomePageState extends State<wards> {
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.white,
+                    color: Colors.grey[200],
                     elevation: 14.0,
                     borderRadius: BorderRadius.circular(24.0),
                     shadowColor: Color(0x802196F3),
@@ -112,7 +112,7 @@ class _HomePageState extends State<wards> {
 
                         Container(
                           width: 250,
-                          height: 180,
+                          height: 130,
                           child: ClipRRect(
                             borderRadius: new BorderRadius.circular(24.0),
                             child: Image(
@@ -132,7 +132,7 @@ class _HomePageState extends State<wards> {
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.white,
+                    color: Colors.grey[200],
                     elevation: 14.0,
                     borderRadius: BorderRadius.circular(24.0),
                     shadowColor: Color(0x802196F3),
@@ -148,7 +148,7 @@ class _HomePageState extends State<wards> {
 
                         Container(
                           width: 250,
-                          height: 180,
+                          height: 130,
                           child: ClipRRect(
                             borderRadius: new BorderRadius.circular(24.0),
                             child: Image(
@@ -177,24 +177,9 @@ class _HomePageState extends State<wards> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Container(child: Text("General ward",
-            style: TextStyle(color: Color(0xffe6020a), fontSize: 24.0,fontWeight: FontWeight.bold),)),
+            style: TextStyle(color: Colors.cyan[800], fontSize: 24.0,fontWeight: FontWeight.bold),)),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 8.0),
-        //   child: Container(
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //         children: <Widget>[
-        //           Container(child: Text("4.3",
-        //             style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-                  
-        //           Container(child: Icon(
-        //             FontAwesomeIcons.solidStarHalf, color: Colors.amber,
-        //             size: 15.0,),),
-        //           Container(child: Text("(321) \u00B7 0.9 mi",
-        //             style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-        //         ],)),
-        // ),
+        
         Container(child: Text("13 patients",
           style: TextStyle(color: Colors.black54, fontSize: 18.0,fontWeight: FontWeight.bold),)),
       ],
@@ -208,28 +193,9 @@ class _HomePageState extends State<wards> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Container(child: Text("ICU ward",
-            style: TextStyle(color: Color(0xffe6020a), fontSize: 24.0,fontWeight: FontWeight.bold),)),
+            style: TextStyle(color: Colors.cyan[800], fontSize: 24.0,fontWeight: FontWeight.bold),)),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 8.0),
-        //   child: Container(child: Row(children: <Widget>[
-        //     Container(child: Text("4.3",
-        //       style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStarHalf, color: Colors.amber,
-        //       size: 15.0,),),
-        //     Container(child: Text("(75) \u00B7 1.2 mi",
-        //       style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-        //   ],)),
-        // ),
+        
         Container(child: Text("20 Patients",
           style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
       ],
@@ -243,25 +209,9 @@ class _HomePageState extends State<wards> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Container(child: Text("Covid wards",
-            style: TextStyle(color: Color(0xffe6020a), fontSize: 24.0,fontWeight: FontWeight.bold),)),
+            style: TextStyle(color: Colors.cyan[800], fontSize: 24.0,fontWeight: FontWeight.bold),)),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 8.0),
-        //   child: Container(child: Row(children: <Widget>[
-        //     Container(child: Text("4.0",
-        //       style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Text("(100) \u00B7 2.0 mi",
-        //       style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-        //   ],)),
-        // ),
+       
         Container(child: Text("15 Patients",
           style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
       ],
@@ -275,26 +225,10 @@ class _HomePageState extends State<wards> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Container(child: Text("Emergency Ward",
-            style: TextStyle(color: Color(0xffe6020a), fontSize: 24.0,fontWeight: FontWeight.bold),)),
+            style: TextStyle(color: Colors.cyan[800], fontSize: 24.0,fontWeight: FontWeight.bold),)),
         ),
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 8.0),
-        //   child: Container(child: Row(children: <Widget>[
-        //     Container(child: Text("3.5", style: TextStyle(
-        //       color: Colors.black54, fontSize: 18.0,),)),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStar, color: Colors.amber, size: 15.0,),),
-        //     Container(child: Icon(
-        //       FontAwesomeIcons.solidStarHalf, color: Colors.amber,
-        //       size: 15.0,),),
-        //     Container(child: Text("(50) \u00B7 2.5 mi",
-        //       style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
-        //   ],)),
-        // ),
+
+       
         Container(child: Text("9 Patients",
           style: TextStyle(color: Colors.black54, fontSize: 18.0,),)),
       ],

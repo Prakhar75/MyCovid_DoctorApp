@@ -98,44 +98,7 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
-  // Widget _buildEmail() {
-  //   return TextFormField(
-  //     decoration: InputDecoration(labelText: 'Email'),
-  //     validator: (String value) {
-  //       if (value.isEmpty) {
-  //         return 'Email is Required';
-  //       }
-
-  //       if (!RegExp(
-  //               r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-  //           .hasMatch(value)) {
-  //         return 'Please enter a valid email Address';
-  //       }
-
-  //       return null;
-  //     },
-  //     onSaved: (String value) {
-  //       _email = value;
-  //     },
-  //   );
-  // }
-
-  /*Widget _buildIPD() {
-    return TextFormField(
-      decoration: InputDecoration(labelText: 'IPD number'),
-      keyboardType: TextInputType.visiblePassword,
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'number is Required';
-        }
-        return null;
-      },
-      onSaved: (String value) {
-        _ipd = value;
-      },
-    );
-  }*/
-
+ 
   Widget _builRelname() {
     return TextFormField(
       decoration: InputDecoration(labelText: "Relative's Name"),
