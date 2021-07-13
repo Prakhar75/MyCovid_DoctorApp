@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:mycovid/ward5.dart';
 import 'ward5.dart';
+import 'ward15.dart';
+import 'ward25.dart';
 
 class covidwards extends StatefulWidget {
   final String cookie;
@@ -239,14 +241,23 @@ class _HomePageState extends State<covidwards> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: Container(
-              child: Text(
-            "Ward 25",
-            style: TextStyle(
-                color: Colors.cyan[800],
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold),
-          )),
+          child: new InkWell(
+            onTap: () {
+              print("tapped");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => war25(cookie)),
+                  (route) => false);
+            },
+            child: Container(
+                child: Text(
+              "Ward 25",
+              style: TextStyle(
+                  color: Colors.cyan[800],
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold),
+            )),
+          ),
         ),
         Container(
             child: Text(
@@ -266,14 +277,23 @@ class _HomePageState extends State<covidwards> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: Container(
-              child: Text(
-            "Ward 15",
-            style: TextStyle(
-                color: Colors.cyan[800],
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold),
-          )),
+          child: new InkWell(
+            onTap: () {
+              print("tapped");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => war15(cookie)),
+                  (route) => false);
+            },
+            child: Container(
+                child: Text(
+              "Ward 15",
+              style: TextStyle(
+                  color: Colors.cyan[800],
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold),
+            )),
+          ),
         ),
         Container(
             child: Text(
