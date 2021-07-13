@@ -11,9 +11,9 @@ import 'package:mycovid/mywardjson.dart';
 
 //void main() => runApp(dash(thi));
 
-class war5 extends StatelessWidget {
+class war15 extends StatelessWidget {
   final String cookie;
-  war5(this.cookie);
+  war15(this.cookie);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
