@@ -4,15 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:mycovid/details.dart';
 //import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:mycovid/myjson.dart';
+//import 'package:mycovid/myjson.dart';
 import 'package:mycovid/form.dart';
 import 'package:dio/dio.dart';
+import 'package:mycovid/mywardjson.dart';
 
 //void main() => runApp(dash(thi));
 
-class dash extends StatelessWidget {
+class war5 extends StatelessWidget {
   final String cookie;
-  dash(this.cookie);
+  war5(this.cookie);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +36,7 @@ class dash extends StatelessWidget {
                 ),
               )),
             ),
-            ListSearch(cookie),
+            ward5(cookie),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -83,25 +84,25 @@ class dash extends StatelessWidget {
   }
 }
 
-class ListSearch extends StatefulWidget {
+class ward5 extends StatefulWidget {
   final String cookie;
-  ListSearch(this.cookie);
+  ward5(this.cookie);
   ListSearchState createState() => ListSearchState();
 }
 
-class ListSearchState extends State<ListSearch> {
+class ListSearchState extends State<ward5> {
   TextEditingController _textController = TextEditingController();
 
-  List<myjson> myALLDATA = [];
-  List<myjson> mycopy = [];
+  List<mywardjson> myALLDATA = [];
+  List<mywardjson> mycopy = [];
   static List<String> mainDataList = [];
 
   Dio dio = new Dio();
 
-  getUsers() async {
+  getwardUsers() async {
     //Cookie("connect.sid", widget.cookie);
     final String Url =
-        "https://my-covid-hospital-api.herokuapp.com/patients/view";
+        "https://my-covid-hospital-api.herokuapp.com/patients/ward";
     var response = await dio.get(Url,
         options: Options(
           headers: {
@@ -114,17 +115,20 @@ class ListSearchState extends State<ListSearch> {
     print(response.data["data"].runtimeType);
     //debugPrint(response.body);
     //var jsonBody = jsonDecode(response.data);
-    for (var data in response.data["data"]) {
-      myALLDATA.add(new myjson(
-          data['FirstName'],
-          data['MiddleName'],
-          data['LastName'],
-          data['RelativeName'],
-          data['Relationship'],
-          data['AdmissionDatetime'],
-          data['PhoneNumber'],
-          data['RelativePhoneNumber'],
-          data['PatientId']));
+    for (var warddata in response.data["data"]["15"]["patients"]) {
+      myALLDATA.add(new mywardjson(
+          warddata['WardId'],
+          warddata['WardName'],
+          warddata['PatientId'],
+          warddata['FirstName'],
+          warddata['MiddleName'],
+          warddata['LastName'],
+          warddata['PhoneNumber'],
+          warddata['RelativeName'],
+          warddata['RelativePhoneNumber'],
+          warddata['Relationship'],
+          warddata['ProfileCreationTime'],
+          warddata['AdmissionDatetime']));
     }
     setState(() {
       //patientData = data['patients'];
@@ -137,7 +141,7 @@ class ListSearchState extends State<ListSearch> {
   @override
   void initState() {
     super.initState();
-    getUsers();
+    getwardUsers();
   }
 
   onItemChanged(String value) {
@@ -171,19 +175,20 @@ class ListSearchState extends State<ListSearch> {
           Expanded(
             child: ListView(
               padding: EdgeInsets.all(12.0),
-              children: mycopy.map((data) {
+              children: mycopy.map((warddata) {
                 return ListTile(
-                    title: Text(data.FirstName + " " + data.LastName),
-                    onTap: () => {
-                          print(data),
+                  title: Text(warddata.FirstName + " " + warddata.LastName),
+                  /*onTap: () => {
+                          print(warddata),
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  MyHomePage(widget.cookie, data),
+                                  MyHomePage(widget.cookie, warddata),
                             ),
                           )
-                        });
+                        }*/
+                );
               }).toList(),
             ),
           )

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'covidwards.dart';
+import 'package:mycovid/ward5.dart';
+import 'ward5.dart';
 
-class wards extends StatefulWidget {
+class covidwards extends StatefulWidget {
   final String cookie;
-  wards(this.cookie);
+  covidwards(this.cookie);
   @override
   _HomePageState createState() => _HomePageState(cookie);
 }
 
-class _HomePageState extends State<wards> {
+class _HomePageState extends State<covidwards> {
   final String cookie;
   _HomePageState(this.cookie);
   final dio = new Dio(); // for http requests
@@ -129,7 +130,7 @@ class _HomePageState extends State<wards> {
               ),
             ),
           ),
-          Padding(
+          /*Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
               child: new FittedBox(
@@ -163,7 +164,7 @@ class _HomePageState extends State<wards> {
                     )),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );
@@ -175,14 +176,23 @@ class _HomePageState extends State<wards> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: Container(
-              child: Text(
-            "General ward",
-            style: TextStyle(
-                color: Colors.cyan[800],
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold),
-          )),
+          child: new InkWell(
+            onTap: () {
+              print("tapped");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => war5(cookie)),
+                  (route) => false);
+            },
+            child: Container(
+                child: Text(
+              "Ward 5",
+              style: TextStyle(
+                  color: Colors.cyan[800],
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold),
+            )),
+          ),
         ),
         Container(
             child: Text(
@@ -196,7 +206,7 @@ class _HomePageState extends State<wards> {
     );
   }
 
-  Widget myDetailsContainer2() {
+  /*Widget myDetailsContainer2() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -221,7 +231,7 @@ class _HomePageState extends State<wards> {
         )),
       ],
     );
-  }
+  }*/
 
   Widget myDetailsContainer3() {
     return Column(
@@ -229,23 +239,14 @@ class _HomePageState extends State<wards> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => covidwards(cookie)),
-                  (route) => false);
-            },
-            child: Container(
-                child: Text(
-              "Covid wards",
-              style: TextStyle(
-                  color: Colors.cyan[800],
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
+          child: Container(
+              child: Text(
+            "Ward 25",
+            style: TextStyle(
+                color: Colors.cyan[800],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold),
+          )),
         ),
         Container(
             child: Text(
@@ -267,7 +268,7 @@ class _HomePageState extends State<wards> {
           padding: const EdgeInsets.only(left: 8.0),
           child: Container(
               child: Text(
-            "Emergency Ward",
+            "Ward 15",
             style: TextStyle(
                 color: Colors.cyan[800],
                 fontSize: 24.0,
