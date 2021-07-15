@@ -68,6 +68,7 @@ class _HomePageState extends State<wards> {
                     elevation: 14.0,
                     borderRadius: BorderRadius.circular(24.0),
                     shadowColor: Color(0x802196F3),
+                    
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -90,8 +91,8 @@ class _HomePageState extends State<wards> {
                           ),
                         ),
                       ],
-                    )),
-              ),
+                    )
+              ),),
             ),
           ),
           Padding(
@@ -103,6 +104,14 @@ class _HomePageState extends State<wards> {
                     elevation: 14.0,
                     borderRadius: BorderRadius.circular(24.0),
                     shadowColor: Color(0x802196F3),
+                    child: new InkWell(
+            onTap: () {
+              //  print("tapped");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => covidwards(cookie)),
+                  (route) => false);
+            },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -125,7 +134,9 @@ class _HomePageState extends State<wards> {
                           ),
                         ),
                       ],
-                    )),
+                    ),
+                    ),
+                ),
               ),
             ),
           ),
@@ -229,14 +240,7 @@ class _HomePageState extends State<wards> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => covidwards(cookie)),
-                  (route) => false);
-            },
+          
             child: Container(
                 child: Text(
               "Covid wards",
@@ -246,7 +250,7 @@ class _HomePageState extends State<wards> {
                   fontWeight: FontWeight.bold),
             )),
           ),
-        ),
+        
         Container(
             child: Text(
           "15 Patients",

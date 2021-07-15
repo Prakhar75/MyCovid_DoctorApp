@@ -149,6 +149,7 @@ class _MyState extends State<LoginScreen> {
                             controller: passController,
                             decoration: InputDecoration(
                               labelText: "Enter Your Mobile Number",
+                              // errorText: validate(passController.text),
                             ),
                             // obscureText: true,
                             keyboardType: TextInputType.text,
@@ -181,8 +182,9 @@ class _MyState extends State<LoginScreen> {
                     } else {
                       passController.text = "invalid number";
                     }
+                    return null;
                   } else {
-                    passController.text = "invalid number";
+                    return 'invalid number';
                   }
                 },
                 splashColor: Colors.tealAccent,
@@ -194,3 +196,9 @@ class _MyState extends State<LoginScreen> {
     );
   }
 }
+// String validate(String value) {
+//   if (!(value.length <10) && value.isNotEmpty) {
+//     return "invalid number";
+//   }
+//   return null;
+// }

@@ -63,6 +63,14 @@ class _HomePageState extends State<dashb> {
                     elevation: 14.0,
                     borderRadius: BorderRadius.circular(24.0),
                     shadowColor: Color(0x802196F3),
+                    child: new InkWell(
+            onTap: () {
+              //  print("tapped");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => wards(cookie)),
+                  (route) => false);
+            },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -86,6 +94,7 @@ class _HomePageState extends State<dashb> {
                         ),
                       ],
                     )),
+                ),
               ),
             ),
           ),
@@ -98,13 +107,21 @@ class _HomePageState extends State<dashb> {
                     elevation: 14.0,
                     borderRadius: BorderRadius.circular(24.0),
                     shadowColor: Color(0x802196F3),
+                    child: new InkWell(
+            onTap: () {
+              //  print("tapped");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => dash(cookie)),
+                  (route) => false);
+            },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 16.0),
-                            child: myDetailsContainer4(),
+                            child: myDetailsContainer2(),
                           ),
                         ),
                         Container(
@@ -121,6 +138,7 @@ class _HomePageState extends State<dashb> {
                         ),
                       ],
                     )),
+                ),
               ),
             ),
           ),
@@ -132,7 +150,16 @@ class _HomePageState extends State<dashb> {
                     color: Colors.grey[200],
                     elevation: 14.0,
                     borderRadius: BorderRadius.circular(24.0),
+                    
                     shadowColor: Color(0x802196F3),
+                    child: new InkWell(
+            onTap: () {
+              //  print("tapped");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => FormScreend(cookie)),
+                  (route) => false);
+            },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -156,6 +183,7 @@ class _HomePageState extends State<dashb> {
                         ),
                       ],
                     )),
+                    ),
               ),
             ),
           ),
@@ -168,13 +196,21 @@ class _HomePageState extends State<dashb> {
                     elevation: 14.0,
                     borderRadius: BorderRadius.circular(24.0),
                     shadowColor: Color(0x802196F3),
+                    child: new InkWell(
+            onTap: () {
+              //  print("tapped");
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => FormScreen(cookie)),
+                  (route) => false);
+            },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 16.0),
-                            child: myDetailsContainer2(),
+                            child: myDetailsContainer4(),
                           ),
                         ),
                         Container(
@@ -191,7 +227,7 @@ class _HomePageState extends State<dashb> {
                         ),
                       ],
                     )),
-              ),
+              ),),
             ),
           ),
           Padding(
@@ -275,14 +311,7 @@ class _HomePageState extends State<dashb> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => wards(cookie)),
-                  (route) => false);
-            },
+          
             child: Container(
                 child: Text(
               "Ward List",
@@ -292,7 +321,7 @@ class _HomePageState extends State<dashb> {
                   fontWeight: FontWeight.bold),
             )),
           ),
-        ),
+        
         Container(
             child: Text(
           "Tap to view the status",
@@ -311,14 +340,7 @@ class _HomePageState extends State<dashb> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => dash(cookie)),
-                  (route) => false);
-            },
+          
             child: Container(
                 child: Text(
               "Covid Rounds",
@@ -328,7 +350,7 @@ class _HomePageState extends State<dashb> {
                   fontWeight: FontWeight.bold),
             )),
           ),
-        ),
+        
         Container(
             child: Text(
           "tap to view and add patients",
@@ -347,14 +369,7 @@ class _HomePageState extends State<dashb> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => FormScreend(cookie)),
-                  (route) => false);
-            },
+          
             child: Container(
                 child: Text(
               "Add doctor",
@@ -364,7 +379,7 @@ class _HomePageState extends State<dashb> {
                   fontWeight: FontWeight.bold),
             )),
           ),
-        ),
+        
         Container(
             child: Text(
           "To be added by admins only",
@@ -383,14 +398,7 @@ class _HomePageState extends State<dashb> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => FormScreen(cookie)),
-                  (route) => false);
-            },
+          
             child: Container(
                 child: Text(
               "Add Patients",
@@ -399,7 +407,7 @@ class _HomePageState extends State<dashb> {
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold),
             )),
-          ),
+          
         ),
         Container(
             child: Text(
@@ -419,21 +427,20 @@ class _HomePageState extends State<dashb> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {},
+          
             child: Container(
                 child: Text(
-              "Add doctor",
+              "Scan QR",
               style: TextStyle(
                   color: Colors.cyan[800],
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold),
             )),
           ),
-        ),
+        
         Container(
             child: Text(
-          "To be added by admins only",
+          "Tap to scan QR code",
           style: TextStyle(
             color: Colors.black54,
             fontSize: 18.0,
@@ -449,18 +456,17 @@ class _HomePageState extends State<dashb> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {},
+          
             child: Container(
                 child: Text(
-              "Add doctor",
+              " Settings",
               style: TextStyle(
                   color: Colors.cyan[800],
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold),
             )),
           ),
-        ),
+        
         Container(
             child: Text(
           "To be added by admins only",
