@@ -16,6 +16,8 @@ class LoginScreen extends StatefulWidget {
   _MyState createState() => _MyState();
 }
 
+
+
 class _MyState extends State<LoginScreen> {
   // WELCOME and login page
   TextEditingController passController = new TextEditingController();
@@ -142,22 +144,26 @@ class _MyState extends State<LoginScreen> {
                         brightness: Brightness.dark,
                         primarySwatch: Colors.teal,
                       ),
+                      child:Form(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           TextFormField(
+                            
                             controller: passController,
                             decoration: InputDecoration(
                               labelText: "Enter Your Mobile Number",
-                              // errorText: validate(passController.text),
+
+                            
                             ),
                             // obscureText: true,
-                            keyboardType: TextInputType.text,
+                            keyboardType: TextInputType.phone,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10.0),
                           ),
                         ],
+                      ),
                       ),
                     ),
                   )),
@@ -167,7 +173,10 @@ class _MyState extends State<LoginScreen> {
                 child: Text('Get OTP'),
                 onPressed: () async {
                   //print(status);
-                  if ((passController.text).length == 10) {
+                  if ((passController.text).length != 10) {
+                    print('object is not 10................');
+                    showAlertDialog(context) ;
+                  } else {
                     await postNum();
                     //print(status);
                     //print("soham"),
@@ -182,9 +191,6 @@ class _MyState extends State<LoginScreen> {
                     } else {
                       passController.text = "invalid number";
                     }
-                    return null;
-                  } else {
-                    return 'invalid number';
                   }
                 },
                 splashColor: Colors.tealAccent,
@@ -196,9 +202,32 @@ class _MyState extends State<LoginScreen> {
     );
   }
 }
-// String validate(String value) {
-//   if (!(value.length <10) && value.isNotEmpty) {
-//     return "invalid number";
-//   }
-//   return null;
-// }
+showAlertDialog(BuildContext context) {
+
+ 
+  
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("invalid number",
+    style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),
+    ),
+    content: Text("number should be of 10 digits "
+    
+    ),
+    actions: [
+    
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
