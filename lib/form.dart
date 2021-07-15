@@ -217,11 +217,13 @@ class FormScreenState extends State<FormScreen> {
                     if (!_formKey.currentState.validate()) {
                       return;
                     } else {
+                      showAlertDialog(context);
                       await postData();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => dash(widget.cookie),
+                          
                         ),
                       );
                     }
@@ -243,4 +245,30 @@ class FormScreenState extends State<FormScreen> {
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("       Details Submitted",
+    style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                ),
+    ),
+    content: Icon(Icons.check_circle_outline
+    
+    ),
+    actions: [
+    
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

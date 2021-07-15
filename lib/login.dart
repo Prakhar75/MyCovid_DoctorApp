@@ -203,10 +203,6 @@ class _MyState extends State<LoginScreen> {
   }
 }
 showAlertDialog(BuildContext context) {
-
- 
-  
-
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("invalid number",

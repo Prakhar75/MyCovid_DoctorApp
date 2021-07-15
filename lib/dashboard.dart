@@ -44,7 +44,7 @@ class dash extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              /*FloatingActionButton(
+              FloatingActionButton(
                 backgroundColor: Colors.teal[600],
                 child: Icon(Icons.qr_code_2_rounded),
                 onPressed: () {
@@ -58,7 +58,7 @@ class dash extends StatelessWidget {
               SizedBox(
                 width: 20,
                 height: 10,
-              ),*/
+              ),
               FloatingActionButton(
                 backgroundColor: Colors.teal[600],
                 child: Icon(Icons.add_box),
