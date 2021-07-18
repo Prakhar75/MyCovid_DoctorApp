@@ -18,6 +18,13 @@ class _HomePageState extends State<dashb> {
   Icon _searchIcon = new Icon(Icons.search);
   final String cookie;
   _HomePageState(this.cookie);
+  /*gotoCovidRounds(BuildContext context) {
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => dash(cookie)),
+        (route) => false);
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -318,6 +325,7 @@ class _HomePageState extends State<dashb> {
                   context,
                   MaterialPageRoute(builder: (context) => dash(cookie)),
                   (route) => false);
+              //gotoCovidRounds(context);
             },
             child: Container(
                 child: Text(

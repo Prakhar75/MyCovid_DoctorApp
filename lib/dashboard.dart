@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:mycovid/details.dart';
+import 'package:mycovid/mainpage.dart';
 //import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:mycovid/myjson.dart';
@@ -13,6 +14,7 @@ import 'package:dio/dio.dart';
 class dash extends StatelessWidget {
   final String cookie;
   dash(this.cookie);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +22,20 @@ class dash extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-            backgroundColor: Colors.teal, title: Text("MyCovid Doctor's App")),
+            automaticallyImplyLeading: true,
+            backgroundColor: Colors.teal,
+            title: Text("MyCovid Doctor's App"),
+            leading: BackButton(
+              //icon: Icon(Icons.Back),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => dashb(cookie),
+                  ),
+                );
+              },
+            )),
         body: Stack(
           children: <Widget>[
             Positioned.fill(

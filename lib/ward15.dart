@@ -11,9 +11,9 @@ import 'package:mycovid/mywardjson.dart';
 
 //void main() => runApp(dash(thi));
 
-class war5 extends StatelessWidget {
+class war15 extends StatelessWidget {
   final String cookie;
-  war5(this.cookie);
+  war15(this.cookie);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,7 +36,7 @@ class war5 extends StatelessWidget {
                 ),
               )),
             ),
-            ward5(cookie),
+            ward15(cookie),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -84,13 +84,13 @@ class war5 extends StatelessWidget {
   }
 }
 
-class ward5 extends StatefulWidget {
+class ward15 extends StatefulWidget {
   final String cookie;
-  ward5(this.cookie);
+  ward15(this.cookie);
   ListSearchState createState() => ListSearchState();
 }
 
-class ListSearchState extends State<ward5> {
+class ListSearchState extends State<ward15> {
   TextEditingController _textController = TextEditingController();
 
   List<mywardjson> myALLDATA = [];
