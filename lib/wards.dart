@@ -121,11 +121,11 @@ class _HomePageState extends State<wards> {
                   child: new InkWell(
                     onTap: () {
                       //  print("tapped");
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => covidwards(cookie)),
-                          (route) => false);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => covidwards(cookie)),
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -54,10 +54,10 @@ class _HomePageState extends State<covidwards> {
                   child: new InkWell(
                     onTap: () {
                       print("tapped");
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => war5(cookie)),
-                          (route) => false);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => war5(cookie)),
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,11 +98,10 @@ class _HomePageState extends State<covidwards> {
                   child: new InkWell(
                     onTap: () {
                       print("tapped");
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => war15(cookie)),
-                          (route) => false);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => war15(cookie)),
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,11 +143,10 @@ class _HomePageState extends State<covidwards> {
                   child: new InkWell(
                     onTap: () {
                       print("tapped");
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => war25(cookie)),
-                          (route) => false);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => war25(cookie)),
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

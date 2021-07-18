@@ -82,11 +82,10 @@ class _HomePageState extends State<dashb> {
                   child: new InkWell(
                       onTap: () {
                         //  print("tapped");
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => dash(cookie)),
-                            (route) => false);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => dash(cookie)),
+                        );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,11 +127,11 @@ class _HomePageState extends State<dashb> {
                   child: new InkWell(
                       onTap: () {
                         //  print("tapped");
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FormScreen(cookie)),
-                            (route) => false);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FormScreen(cookie)),
+                        );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -174,11 +173,11 @@ class _HomePageState extends State<dashb> {
                   child: new InkWell(
                       onTap: () {
                         //  print("tapped");
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => wards(cookie)),
-                            (route) => false);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => wards(cookie)),
+                        );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -220,11 +219,11 @@ class _HomePageState extends State<dashb> {
                   child: new InkWell(
                       onTap: () {
                         //  print("tapped");
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FormScreend(cookie)),
-                            (route) => false);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FormScreend(cookie)),
+                        );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

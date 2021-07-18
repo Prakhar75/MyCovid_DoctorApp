@@ -34,22 +34,28 @@ class dash extends StatelessWidget {
                 );
               },
             )),
-        body: Stack(
-          children: <Widget>[
-            Positioned.fill(
-              child: Container(
-                  decoration: new BoxDecoration(
-                color: Colors.white,
-                image: DecorationImage(
-                  colorFilter: new ColorFilter.mode(
-                      Colors.black.withOpacity(0.4), BlendMode.dstATop),
-                  image: AssetImage('assets/images/doc1.jpg'),
-                  fit: BoxFit.fill,
-                ),
-              )),
-            ),
-            ListSearch(cookie),
-          ],
+        body: WillPopScope(
+          onWillPop: () async {
+            Navigator.pop(context, cookie);
+            return false;
+          },
+          child: Stack(
+            children: <Widget>[
+              Positioned.fill(
+                child: Container(
+                    decoration: new BoxDecoration(
+                  color: Colors.white,
+                  image: DecorationImage(
+                    colorFilter: new ColorFilter.mode(
+                        Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                    image: AssetImage('assets/images/doc1.jpg'),
+                    fit: BoxFit.fill,
+                  ),
+                )),
+              ),
+              ListSearch(cookie),
+            ],
+          ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: Container(
