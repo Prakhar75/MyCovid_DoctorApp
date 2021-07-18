@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:mycovid/dashboard.dart';
-
+import 'package:mycovid/mainpage.dart';
 //void main() => runApp(FormScreen());
 
 class FormScreend extends StatefulWidget {
@@ -22,14 +22,14 @@ class FormScreendState extends State<FormScreend> {
   String _email;
   String _phoneNumber;
   String _des;
-  bool _admin=false;
+  bool _admin = false;
   // final bool tristate=true;
 
   Dio dio = new Dio();
 
   Future postData() async {
     final String Url =
-        'https://my-covid-hospital-api.herokuapp.com/patients/newPatient';
+        'https://my-covid-hospital-api.herokuapp.com/admin/newStaff';
 
     dynamic data = {
       "FirstName": _name,
@@ -108,8 +108,8 @@ class FormScreendState extends State<FormScreend> {
                 r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
             .hasMatch(value)) {
           return 'Please enter a valid email Address';
-        } 
-          return null;
+        }
+        return null;
       },
       onSaved: (String value) {
         _email = value;
@@ -171,7 +171,20 @@ class FormScreendState extends State<FormScreend> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.teal, title: Text("Enter New Doctor details")),
+          automaticallyImplyLeading: true,
+          backgroundColor: Colors.teal,
+          title: Text("MyCovid Doctor's App"),
+          leading: BackButton(
+            //icon: Icon(Icons.Back),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => dashb(widget.cookie),
+                ),
+              );
+            },
+          )),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.all(24),
@@ -186,20 +199,18 @@ class FormScreendState extends State<FormScreend> {
                 _buildPhoneNumber(),
                 _buildEmail(),
                 _desig(),
- 
-   
                 SizedBox(height: 10),
-                                CheckboxListTile(
-  controlAffinity: ListTileControlAffinity.leading,
-  title: Text('Add as Admin'),
-  value: _admin=true,
-  onChanged: (value) {
-    setState(() {
-      _admin = !_admin;
-    });
-  },
-),
-  SizedBox(height: 30),
+                CheckboxListTile(
+                  controlAffinity: ListTileControlAffinity.leading,
+                  title: Text('Add as Admin'),
+                  value: _admin = true,
+                  onChanged: (value) {
+                    setState(() {
+                      _admin = !_admin;
+                    });
+                  },
+                ),
+                SizedBox(height: 30),
                 RaisedButton(
                   child: Text(
                     'Submit',
@@ -210,11 +221,12 @@ class FormScreendState extends State<FormScreend> {
                     if (!_formKey.currentState.validate()) {
                       return;
                     } else {
+                      showAlertDialog(context);
                       await postData();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => dash(widget.cookie),
+                          builder: (context) => dashb(widget.cookie),
                         ),
                       );
                     }
@@ -228,12 +240,34 @@ class FormScreendState extends State<FormScreend> {
                     print(_des);
                   },
                 ),
-
-           ],
+              ],
             ),
           ),
         ),
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text(
+      "       Details Submitted",
+      style: TextStyle(
+        color: Colors.green,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    content: Icon(Icons.check_circle_outline),
+    actions: [],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

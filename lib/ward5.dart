@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:mycovid/covidwards.dart';
 import 'package:mycovid/details.dart';
 //import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -21,7 +22,20 @@ class war5 extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-            backgroundColor: Colors.teal, title: Text("MyCovid Doctor's App")),
+            automaticallyImplyLeading: true,
+            backgroundColor: Colors.teal,
+            title: Text("MyCovid Doctor's App"),
+            leading: BackButton(
+              //icon: Icon(Icons.Back),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => covidwards(cookie),
+                  ),
+                );
+              },
+            )),
         body: Stack(
           children: <Widget>[
             Positioned.fill(

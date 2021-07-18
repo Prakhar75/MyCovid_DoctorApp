@@ -4,6 +4,7 @@ import 'package:mycovid/ward5.dart';
 import 'ward5.dart';
 import 'ward15.dart';
 import 'ward25.dart';
+import 'package:mycovid/wards.dart';
 
 class covidwards extends StatefulWidget {
   final String cookie;
@@ -23,7 +24,21 @@ class _HomePageState extends State<covidwards> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[200],
-      appBar: _buildBar(context),
+      appBar: AppBar(
+          automaticallyImplyLeading: true,
+          backgroundColor: Colors.teal,
+          title: Text("MyCovid Doctor's App"),
+          leading: BackButton(
+            //icon: Icon(Icons.Back),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => wards(cookie),
+                ),
+              );
+            },
+          )),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[

@@ -41,7 +41,10 @@ class _MyState extends State<LoginScreen> {
         response.data["data"]["hash"], passController.text));
     print(mylogin);*/
     status = response.data["status"];
-    hash = response.data["data"]["hash"];
+    if (status == "success") {
+      hash = response.data["data"]["hash"];
+    }
+
     print(response.headers);
     //print(response.data.toString().substring(9, 16));
     //status = response.data.toString().substring(9, 16);
@@ -142,21 +145,23 @@ class _MyState extends State<LoginScreen> {
                         brightness: Brightness.dark,
                         primarySwatch: Colors.teal,
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          TextFormField(
-                            controller: passController,
-                            decoration: InputDecoration(
-                              labelText: "Enter Your Mobile Number",
+                      child: Form(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            TextFormField(
+                              controller: passController,
+                              decoration: InputDecoration(
+                                labelText: "Enter Your Mobile Number",
+                              ),
+                              // obscureText: true,
+                              keyboardType: TextInputType.phone,
                             ),
-                            // obscureText: true,
-                            keyboardType: TextInputType.text,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                          ),
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   )),
@@ -166,11 +171,15 @@ class _MyState extends State<LoginScreen> {
                 child: Text('Get OTP'),
                 onPressed: () async {
                   //print(status);
-                  if ((passController.text).length == 10) {
+                  if ((passController.text).length != 10) {
+                    print('object is not 10................');
+                    //showAlertDialog(context);
+                  } else {
                     await postNum();
                     //print(status);
                     //print("soham"),
                     if (status == "success") {
+                      showAlertDialog(context);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -179,10 +188,9 @@ class _MyState extends State<LoginScreen> {
                         ),
                       );
                     } else {
-                      passController.text = "invalid number";
+                      //passController.text = "invalid number";
+                      showAlertDialog(context);
                     }
-                  } else {
-                    passController.text = "invalid number";
                   }
                 },
                 splashColor: Colors.tealAccent,
@@ -192,5 +200,50 @@ class _MyState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the AlertDialog
+    if (status == "success") {
+      AlertDialog alert = AlertDialog(
+        title: Text(
+          "Verify OTP",
+          style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Icon(Icons.check_circle_outline),
+        actions: [],
+      );
+
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    } else {
+      AlertDialog alert = AlertDialog(
+        title: Text(
+          "Not a Registered Number",
+          style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Icon(Icons.check_circle_outline),
+        actions: [],
+      );
+
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
   }
 }

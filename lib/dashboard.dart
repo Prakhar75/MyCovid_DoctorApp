@@ -2,19 +2,17 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:mycovid/details.dart';
-import 'package:mycovid/mainpage.dart';
 //import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:mycovid/myjson.dart';
 import 'package:mycovid/form.dart';
 import 'package:dio/dio.dart';
-
+import 'package:mycovid/mainpage.dart';
 //void main() => runApp(dash(thi));
 
 class dash extends StatelessWidget {
   final String cookie;
   dash(this.cookie);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -59,7 +57,7 @@ class dash extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              /*FloatingActionButton(
+              FloatingActionButton(
                 backgroundColor: Colors.teal[600],
                 child: Icon(Icons.qr_code_2_rounded),
                 onPressed: () {
@@ -73,7 +71,7 @@ class dash extends StatelessWidget {
               SizedBox(
                 width: 20,
                 height: 10,
-              ),*/
+              ),
               FloatingActionButton(
                 backgroundColor: Colors.teal[600],
                 child: Icon(Icons.add_box),

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:mycovid/covidwards.dart';
 import 'package:mycovid/details.dart';
 //import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -21,7 +22,20 @@ class war15 extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-            backgroundColor: Colors.teal, title: Text("MyCovid Doctor's App")),
+            automaticallyImplyLeading: true,
+            backgroundColor: Colors.teal,
+            title: Text("MyCovid Doctor's App"),
+            leading: BackButton(
+              //icon: Icon(Icons.Back),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => covidwards(cookie),
+                  ),
+                );
+              },
+            )),
         body: Stack(
           children: <Widget>[
             Positioned.fill(
@@ -36,7 +50,7 @@ class war15 extends StatelessWidget {
                 ),
               )),
             ),
-            ward15(cookie),
+            ward5(cookie),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -84,13 +98,13 @@ class war15 extends StatelessWidget {
   }
 }
 
-class ward15 extends StatefulWidget {
+class ward5 extends StatefulWidget {
   final String cookie;
-  ward15(this.cookie);
+  ward5(this.cookie);
   ListSearchState createState() => ListSearchState();
 }
 
-class ListSearchState extends State<ward15> {
+class ListSearchState extends State<ward5> {
   TextEditingController _textController = TextEditingController();
 
   List<mywardjson> myALLDATA = [];

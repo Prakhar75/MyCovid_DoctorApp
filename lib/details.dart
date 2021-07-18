@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:mycovid/myjson.dart';
 import 'package:dio/dio.dart';
 import 'package:mycovid/dashboard.dart';
+import 'package:mycovid/mainpage.dart';
 
 class MyHomePage extends StatefulWidget {
   final String cookie;
@@ -23,10 +24,23 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+            backgroundColor: Colors.grey[900],
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
+                automaticallyImplyLeading: true,
                 backgroundColor: Colors.teal,
-                title: Text("MyCovid Doctor's App")),
+                title: Text("MyCovid Doctor's App"),
+                leading: BackButton(
+                  //icon: Icon(Icons.Back),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => dashb(widget.cookie),
+                      ),
+                    );
+                  },
+                )),
             body: profileView(widget.cookie)));
   }
 
@@ -70,333 +84,356 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget profileView(String cookie) {
     return Column(
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.fromLTRB(30, 30, 30, 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                '   PROFILE  DETAILS',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              Container(height: 24, width: 24)
-            ],
-          ),
-        ),
         Expanded(
             child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [Colors.black54, Color.fromRGBO(0, 41, 50, 1)])),
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 13, 20, 4),
-                child: Container(
-                  height: 45,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                      child: Text(
-                        widget.myData.FirstName + " " + widget.myData.LastName,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white)),
-                ),
+              SizedBox(
+                height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
-                child: Container(
-                  height: 45,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                      child: Text(
-                        "${widget.myData.PatientId}",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
-                child: Container(
-                  height: 45,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'spO2 (%)',
-                          hintStyle: TextStyle(color: Colors.white70),
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [Colors.grey[600], Colors.red[400]])),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
+                      child: Container(
+                        height: 45,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                            child: Text(
+                              widget.myData.FirstName +
+                                  " " +
+                                  widget.myData.LastName,
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            ),
+                          ),
                         ),
-                        style: TextStyle(color: Colors.white70),
-                        keyboardType: TextInputType.number,
-                        validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'spO2 (%) is required';
-                          }
-
-                          return null;
-                        },
-                        onSaved: (String value) {
-                          spo2 = value;
-                        },
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white)),
                       ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 10),
+                      child: Container(
+                        height: 45,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                            child: Text(
+                              "${widget.myData.PatientId}",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
-                child: Container(
-                  height: 45,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Blood Pressure Systolic(mm Hg)',
-                          hintStyle: TextStyle(color: Colors.white70),
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                        ),
-                        style: TextStyle(color: Colors.white70),
-                        keyboardType: TextInputType.number,
-                        validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'Blood Pressure Systolic(mm Hg) is required';
-                          }
-
-                          return null;
-                        },
-                        onSaved: (String value) {
-                          bp_sys = value;
-                        },
-                      ),
-                    ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
-                ),
+              SizedBox(
+                height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
-                child: Container(
-                  height: 45,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Blood Pressure Diastolic(mm Hg)',
-                          hintStyle: TextStyle(color: Colors.white70),
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                        ),
-                        style: TextStyle(color: Colors.white70),
-                        keyboardType: TextInputType.number,
-                        validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'Blood Pressure Diastolic(mm Hg) is required';
-                          }
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [Colors.grey[600], Colors.black])),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
+                      child: Container(
+                        height: 45,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: 'spO2 (%)',
+                                hintStyle: TextStyle(color: Colors.white70),
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                              ),
+                              style: TextStyle(color: Colors.white70),
+                              keyboardType: TextInputType.number,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'spO2 (%) is required';
+                                }
 
-                          return null;
-                        },
-                        onSaved: (String value) {
-                          bp_dia = value;
-                        },
+                                return null;
+                              },
+                              onSaved: (String value) {
+                                spo2 = value;
+                              },
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
-                child: Container(
-                  height: 45,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Respiratory Rate (cycles)',
-                          fillColor: Colors.white,
-                          hintStyle: TextStyle(color: Colors.white70),
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                        ),
-                        style: TextStyle(color: Colors.white70),
-                        keyboardType: TextInputType.number,
-                        validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'Respiratory Rate (cycles) is required';
-                          }
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                      child: Container(
+                        height: 45,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: 'Blood Pressure Systolic(mm Hg)',
+                                hintStyle: TextStyle(color: Colors.white70),
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                              ),
+                              style: TextStyle(color: Colors.white70),
+                              keyboardType: TextInputType.number,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Blood Pressure Systolic(mm Hg) is required';
+                                }
 
-                          return null;
-                        },
-                        onSaved: (String value) {
-                          res_cycle = value;
-                        },
+                                return null;
+                              },
+                              onSaved: (String value) {
+                                bp_sys = value;
+                              },
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
-                child: Container(
-                  height: 45,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Pulse Rate (BPM)',
-                          hintStyle: TextStyle(color: Colors.white70),
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                        ),
-                        style: TextStyle(color: Colors.white70),
-                        keyboardType: TextInputType.number,
-                        validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'Pulse Rate (BPM) is required';
-                          }
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                      child: Container(
+                        height: 45,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: 'Blood Pressure Diastolic(mm Hg)',
+                                hintStyle: TextStyle(color: Colors.white70),
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                              ),
+                              style: TextStyle(color: Colors.white70),
+                              keyboardType: TextInputType.number,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Blood Pressure Diastolic(mm Hg) is required';
+                                }
 
-                          return null;
-                        },
-                        onSaved: (String value) {
-                          pul_rate = value;
-                        },
+                                return null;
+                              },
+                              onSaved: (String value) {
+                                bp_dia = value;
+                              },
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
-                child: Container(
-                  height: 45,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'O2 (litres)',
-                          hintStyle: TextStyle(color: Colors.white70),
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                        ),
-                        style: TextStyle(color: Colors.white70),
-                        keyboardType: TextInputType.number,
-                        validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'O2 (litres) is required';
-                          }
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                      child: Container(
+                        height: 45,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: 'Respiratory Rate (cycles)',
+                                fillColor: Colors.white,
+                                hintStyle: TextStyle(color: Colors.white70),
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                              ),
+                              style: TextStyle(color: Colors.white70),
+                              keyboardType: TextInputType.number,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Respiratory Rate (cycles) is required';
+                                }
 
-                          return null;
-                        },
-                        onSaved: (String value) {
-                          o2 = value;
-                        },
+                                return null;
+                              },
+                              onSaved: (String value) {
+                                res_cycle = value;
+                              },
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
-                child: Container(
-                  height: 45,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Temperature',
-                          hintStyle: TextStyle(color: Colors.white70),
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          disabledBorder: InputBorder.none,
-                        ),
-                        style: TextStyle(color: Colors.white70),
-                        keyboardType: TextInputType.number,
-                        validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'Temperature is required';
-                          }
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                      child: Container(
+                        height: 45,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: 'Pulse Rate (BPM)',
+                                hintStyle: TextStyle(color: Colors.white70),
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                              ),
+                              style: TextStyle(color: Colors.white70),
+                              keyboardType: TextInputType.number,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Pulse Rate (BPM) is required';
+                                }
 
-                          return null;
-                        },
-                        onSaved: (String value) {
-                          temp = value;
-                        },
+                                return null;
+                              },
+                              onSaved: (String value) {
+                                pul_rate = value;
+                              },
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
                       ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      border: Border.all(width: 1.0, color: Colors.white70)),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                      child: Container(
+                        height: 45,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: 'O2 (litres)',
+                                hintStyle: TextStyle(color: Colors.white70),
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                              ),
+                              style: TextStyle(color: Colors.white70),
+                              keyboardType: TextInputType.number,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'O2 (litres) is required';
+                                }
+
+                                return null;
+                              },
+                              onSaved: (String value) {
+                                o2 = value;
+                              },
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 10),
+                      child: Container(
+                        height: 45,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                hintText: 'Temperature',
+                                hintStyle: TextStyle(color: Colors.white70),
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                              ),
+                              style: TextStyle(color: Colors.white70),
+                              keyboardType: TextInputType.number,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Temperature is required';
+                                }
+
+                                return null;
+                              },
+                              onSaved: (String value) {
+                                temp = value;
+                              },
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            border:
+                                Border.all(width: 1.0, color: Colors.white70)),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Expanded(
@@ -415,6 +452,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () async {
                       await postVitals();
                       if (vital_status == "success") {
+                        showAlertDialog(context);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -484,4 +522,27 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text(
+      "       Details Submitted",
+      style: TextStyle(
+        color: Colors.green,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    content: Icon(Icons.check_circle_outline),
+    actions: [],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:mycovid/dashboard.dart';
+import 'package:mycovid/mainpage.dart';
 
 //void main() => runApp(FormScreen());
 
@@ -98,7 +99,6 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
- 
   Widget _builRelname() {
     return TextFormField(
       decoration: InputDecoration(labelText: "Relative's Name"),
@@ -188,7 +188,20 @@ class FormScreenState extends State<FormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.teal, title: Text("Enter Patient details")),
+          automaticallyImplyLeading: true,
+          backgroundColor: Colors.teal,
+          title: Text("MyCovid Doctor's App"),
+          leading: BackButton(
+            //icon: Icon(Icons.Back),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => dashb(widget.cookie),
+                ),
+              );
+            },
+          )),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.all(24),
@@ -200,7 +213,6 @@ class FormScreenState extends State<FormScreen> {
                 _buildName(),
                 _buildNamem(),
                 _buildNamel(),
-              
                 _buildPhoneNumber(),
                 _builRelname(),
                 _buildRelphNo(),
@@ -217,6 +229,7 @@ class FormScreenState extends State<FormScreen> {
                     if (!_formKey.currentState.validate()) {
                       return;
                     } else {
+                      showAlertDialog(context);
                       await postData();
                       Navigator.push(
                         context,
@@ -243,4 +256,27 @@ class FormScreenState extends State<FormScreen> {
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text(
+      "       Details Submitted",
+      style: TextStyle(
+        color: Colors.green,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    content: Icon(Icons.check_circle_outline),
+    actions: [],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

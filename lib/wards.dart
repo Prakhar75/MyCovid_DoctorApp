@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'covidwards.dart';
+import 'package:mycovid/mainpage.dart';
 
 class wards extends StatefulWidget {
   final String cookie;
@@ -20,7 +21,21 @@ class _HomePageState extends State<wards> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[200],
-      appBar: _buildBar(context),
+      appBar: AppBar(
+          automaticallyImplyLeading: true,
+          backgroundColor: Colors.teal,
+          title: Text("MyCovid Doctor's App"),
+          leading: BackButton(
+            //icon: Icon(Icons.Back),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => dashb(cookie),
+                ),
+              );
+            },
+          )),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[
@@ -99,10 +114,19 @@ class _HomePageState extends State<wards> {
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.grey[200],
-                    elevation: 14.0,
-                    borderRadius: BorderRadius.circular(24.0),
-                    shadowColor: Color(0x802196F3),
+                  color: Colors.grey[200],
+                  elevation: 14.0,
+                  borderRadius: BorderRadius.circular(24.0),
+                  shadowColor: Color(0x802196F3),
+                  child: new InkWell(
+                    onTap: () {
+                      //  print("tapped");
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => covidwards(cookie)),
+                          (route) => false);
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -125,7 +149,9 @@ class _HomePageState extends State<wards> {
                           ),
                         ),
                       ],
-                    )),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -229,23 +255,14 @@ class _HomePageState extends State<wards> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => covidwards(cookie)),
-                  (route) => false);
-            },
-            child: Container(
-                child: Text(
-              "Covid wards",
-              style: TextStyle(
-                  color: Colors.cyan[800],
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
+          child: Container(
+              child: Text(
+            "Covid wards",
+            style: TextStyle(
+                color: Colors.cyan[800],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold),
+          )),
         ),
         Container(
             child: Text(
