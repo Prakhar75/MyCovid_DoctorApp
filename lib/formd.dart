@@ -16,6 +16,7 @@ class FormScreend extends StatefulWidget {
 }
 
 class FormScreendState extends State<FormScreend> {
+  String status;
   String _name;
   String _namem;
   String _namel;
@@ -39,7 +40,6 @@ class FormScreendState extends State<FormScreend> {
       "emmail": _email,
       "designation": _des,
       "admin": _admin,
-      "AdmissionDateTime": "2021-06-25 21:52:00",
     };
 
     var response = await dio.post(Url,
@@ -50,7 +50,8 @@ class FormScreendState extends State<FormScreend> {
             'Cookie': "connect.sid=" + widget.cookie,
           },
         ));
-    print(response.statusCode);
+    status = response.data["status"];
+    print(response.data);
     return response.data;
   }
 
@@ -221,14 +222,18 @@ class FormScreendState extends State<FormScreend> {
                     if (!_formKey.currentState.validate()) {
                       return;
                     } else {
-                      showAlertDialog(context);
                       await postData();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => dashb(widget.cookie),
-                        ),
-                      );
+                      if (status == "success") {
+                        showAlertDialog(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => dashb(widget.cookie),
+                          ),
+                        );
+                      } else {
+                        showAlertDialog(context);
+                      }
                     }
 
                     print(_name);
@@ -247,27 +252,49 @@ class FormScreendState extends State<FormScreend> {
       ),
     );
   }
-}
 
-showAlertDialog(BuildContext context) {
-  // set up the AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text(
-      "       Details Submitted",
-      style: TextStyle(
-        color: Colors.green,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    content: Icon(Icons.check_circle_outline),
-    actions: [],
-  );
+  showAlertDialog(BuildContext context) {
+    // set up the AlertDialog
+    if (status == "success") {
+      AlertDialog alert = AlertDialog(
+        title: Text(
+          "Details Updated",
+          style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Icon(Icons.check_circle_outline),
+        actions: [],
+      );
 
-  // show the dialog
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    } else {
+      AlertDialog alert = AlertDialog(
+        title: Text(
+          "You don't have admin rights",
+          style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Icon(Icons.check_circle_outline),
+        actions: [],
+      );
+
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
+  }
 }
