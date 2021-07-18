@@ -203,10 +203,10 @@ class FormScreendState extends State<FormScreend> {
                 CheckboxListTile(
                   controlAffinity: ListTileControlAffinity.leading,
                   title: Text('Add as Admin'),
-                  value: _admin = true,
+                  value: _admin,
                   onChanged: (value) {
                     setState(() {
-                      _admin = !_admin;
+                      _admin = value;
                     });
                   },
                 ),
