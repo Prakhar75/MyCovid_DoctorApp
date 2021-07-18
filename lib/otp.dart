@@ -118,11 +118,14 @@ class _OTPScreenState extends State<OTPScreen> {
                   onSubmit: (pin) async {
                     await postOtp();
                     if (otp_status == "success") {
+                      showAlertDialog(context);
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                               builder: (context) => dashb(cookie)),
                           (route) => false);
+                    } else {
+                      showAlertDialog(context);
                     }
                   },
                 ),
@@ -132,6 +135,51 @@ class _OTPScreenState extends State<OTPScreen> {
         ),
       ),
     );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the AlertDialog
+    if (otp_status == "success") {
+      AlertDialog alert = AlertDialog(
+        title: Text(
+          "Welcome Doctor",
+          style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Icon(Icons.check_circle_outline),
+        actions: [],
+      );
+
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    } else {
+      AlertDialog alert = AlertDialog(
+        title: Text(
+          "Wrong OTP",
+          style: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Icon(Icons.check_circle_outline),
+        actions: [],
+      );
+
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
   }
 
   /*_verifyPhone() async {

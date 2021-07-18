@@ -47,10 +47,18 @@ class _HomePageState extends State<covidwards> {
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.grey[200],
-                    elevation: 14.0,
-                    borderRadius: BorderRadius.circular(24.0),
-                    shadowColor: Color(0x802196F3),
+                  color: Colors.grey[200],
+                  elevation: 14.0,
+                  borderRadius: BorderRadius.circular(24.0),
+                  shadowColor: Color(0x802196F3),
+                  child: new InkWell(
+                    onTap: () {
+                      print("tapped");
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => war5(cookie)),
+                          (route) => false);
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -64,16 +72,17 @@ class _HomePageState extends State<covidwards> {
                           width: 250,
                           height: 130,
                           child: ClipRRect(
-                            borderRadius: new BorderRadius.circular(24.0),
-                            child: Image(
-                              fit: BoxFit.contain,
-                              alignment: Alignment.topRight,
-                              image: AssetImage("assets/images/ward.png"),
-                            ),
-                          ),
+                              borderRadius: new BorderRadius.circular(24.0),
+                              child: Image(
+                                fit: BoxFit.contain,
+                                alignment: Alignment.topRight,
+                                image: AssetImage("assets/images/ward.png"),
+                              )),
                         ),
                       ],
-                    )),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -82,10 +91,19 @@ class _HomePageState extends State<covidwards> {
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.grey[200],
-                    elevation: 14.0,
-                    borderRadius: BorderRadius.circular(24.0),
-                    shadowColor: Color(0x802196F3),
+                  color: Colors.grey[200],
+                  elevation: 14.0,
+                  borderRadius: BorderRadius.circular(24.0),
+                  shadowColor: Color(0x802196F3),
+                  child: new InkWell(
+                    onTap: () {
+                      print("tapped");
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => war15(cookie)),
+                          (route) => false);
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -108,7 +126,9 @@ class _HomePageState extends State<covidwards> {
                           ),
                         ),
                       ],
-                    )),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -117,10 +137,19 @@ class _HomePageState extends State<covidwards> {
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.grey[200],
-                    elevation: 14.0,
-                    borderRadius: BorderRadius.circular(24.0),
-                    shadowColor: Color(0x802196F3),
+                  color: Colors.grey[200],
+                  elevation: 14.0,
+                  borderRadius: BorderRadius.circular(24.0),
+                  shadowColor: Color(0x802196F3),
+                  child: new InkWell(
+                    onTap: () {
+                      print("tapped");
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => war25(cookie)),
+                          (route) => false);
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -143,7 +172,9 @@ class _HomePageState extends State<covidwards> {
                           ),
                         ),
                       ],
-                    )),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -193,23 +224,14 @@ class _HomePageState extends State<covidwards> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {
-              print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => war5(cookie)),
-                  (route) => false);
-            },
-            child: Container(
-                child: Text(
-              "Ward 5",
-              style: TextStyle(
-                  color: Colors.cyan[800],
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
+          child: Container(
+              child: Text(
+            "Ward 5",
+            style: TextStyle(
+                color: Colors.cyan[800],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold),
+          )),
         ),
         Container(
             child: Text(
@@ -256,23 +278,14 @@ class _HomePageState extends State<covidwards> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {
-              print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => war25(cookie)),
-                  (route) => false);
-            },
-            child: Container(
-                child: Text(
-              "Ward 25",
-              style: TextStyle(
-                  color: Colors.cyan[800],
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
+          child: Container(
+              child: Text(
+            "Ward 25",
+            style: TextStyle(
+                color: Colors.cyan[800],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold),
+          )),
         ),
         Container(
             child: Text(
@@ -292,23 +305,14 @@ class _HomePageState extends State<covidwards> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: new InkWell(
-            onTap: () {
-              print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => war15(cookie)),
-                  (route) => false);
-            },
-            child: Container(
-                child: Text(
-              "Ward 15",
-              style: TextStyle(
-                  color: Colors.cyan[800],
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
+          child: Container(
+              child: Text(
+            "Ward 15",
+            style: TextStyle(
+                color: Colors.cyan[800],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold),
+          )),
         ),
         Container(
             child: Text(

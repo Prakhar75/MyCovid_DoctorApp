@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:mycovid/login.dart';
 import 'dashboard.dart';
 import 'form.dart';
 import 'formd.dart';
@@ -22,7 +23,21 @@ class _HomePageState extends State<dashb> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey[200],
-      appBar: _buildBar(context),
+      appBar: AppBar(
+          automaticallyImplyLeading: true,
+          backgroundColor: Colors.teal,
+          title: Text("MyCovid Doctor's App"),
+          leading: BackButton(
+            //icon: Icon(Icons.Back),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(),
+                ),
+              );
+            },
+          )),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[
@@ -32,7 +47,6 @@ class _HomePageState extends State<dashb> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  
                   // make children widget for better styling here..
                   "Welcome, Dr.Abhinav ",
                   textAlign: TextAlign.center,
@@ -40,7 +54,6 @@ class _HomePageState extends State<dashb> {
                       color: Colors.grey[900],
                       fontSize: 28.0,
                       fontWeight: FontWeight.bold),
-                  
                 ),
                 SizedBox(
                   height: 15,
@@ -62,87 +75,44 @@ class _HomePageState extends State<dashb> {
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.grey[200],
-                    elevation: 14.0,
-                    borderRadius: BorderRadius.circular(24.0),
-                    shadowColor: Color(0x802196F3),
-                    child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => dash(cookie)),
-                  (route) => false);
-            },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: myDetailsContainer2(),
-                          ),
-                        ),
-                        Container(
-                          width: 250,
-                          height: 150,
-                          child: ClipRRect(
-                            borderRadius: new BorderRadius.circular(24.0),
-                            child: Image(
-                              fit: BoxFit.contain,
-                              alignment: Alignment.topRight,
-                              image: AssetImage("assets/images/list.png"),
+                  color: Colors.grey[200],
+                  elevation: 14.0,
+                  borderRadius: BorderRadius.circular(24.0),
+                  shadowColor: Color(0x802196F3),
+                  child: new InkWell(
+                      onTap: () {
+                        //  print("tapped");
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => dash(cookie)),
+                            (route) => false);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: myDetailsContainer2(),
                             ),
                           ),
-                        ),
-                      ],
-                    )),
+                          Container(
+                            width: 250,
+                            height: 150,
+                            child: ClipRRect(
+                              borderRadius: new BorderRadius.circular(24.0),
+                              child: Image(
+                                fit: BoxFit.contain,
+                                alignment: Alignment.topRight,
+                                image: AssetImage("assets/images/list.png"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
                 ),
               ),
-            ),
-          ),
-
-             Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: new FittedBox(
-                child: Material(
-                    color: Colors.grey[200],
-                    elevation: 14.0,
-                    borderRadius: BorderRadius.circular(24.0),
-                    shadowColor: Color(0x802196F3),
-                    child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => FormScreen(cookie)),
-                  (route) => false);
-            },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: myDetailsContainer4(),
-                          ),
-                        ),
-                        Container(
-                          width: 250,
-                          height: 150,
-                          child: ClipRRect(
-                            borderRadius: new BorderRadius.circular(24.0),
-                            child: Image(
-                              fit: BoxFit.contain,
-                              alignment: Alignment.topRight,
-                              image: AssetImage("assets/images/patient.png"),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-              ),),
             ),
           ),
 
@@ -151,92 +121,139 @@ class _HomePageState extends State<dashb> {
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.grey[200],
-                    elevation: 14.0,
-                    borderRadius: BorderRadius.circular(24.0),
-                    shadowColor: Color(0x802196F3),
-                    child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => wards(cookie)),
-                  (route) => false);
-            },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: myDetailsContainer1(),
-                          ),
-                        ),
-                        Container(
-                          width: 250,
-                          height: 150,
-                          child: ClipRRect(
-                            borderRadius: new BorderRadius.circular(24.0),
-                            child: Image(
-                              fit: BoxFit.contain,
-                              alignment: Alignment.topRight,
-                              image: AssetImage("assets/images/ward.png"),
+                  color: Colors.grey[200],
+                  elevation: 14.0,
+                  borderRadius: BorderRadius.circular(24.0),
+                  shadowColor: Color(0x802196F3),
+                  child: new InkWell(
+                      onTap: () {
+                        //  print("tapped");
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FormScreen(cookie)),
+                            (route) => false);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: myDetailsContainer4(),
                             ),
                           ),
-                        ),
-                      ],
-                    )),
+                          Container(
+                            width: 250,
+                            height: 150,
+                            child: ClipRRect(
+                              borderRadius: new BorderRadius.circular(24.0),
+                              child: Image(
+                                fit: BoxFit.contain,
+                                alignment: Alignment.topRight,
+                                image: AssetImage("assets/images/patient.png"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
                 ),
               ),
             ),
           ),
-          
+
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
               child: new FittedBox(
                 child: Material(
-                    color: Colors.grey[200],
-                    elevation: 14.0,
-                    borderRadius: BorderRadius.circular(24.0),
-                    
-                    shadowColor: Color(0x802196F3),
-                    child: new InkWell(
-            onTap: () {
-              //  print("tapped");
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => FormScreend(cookie)),
-                  (route) => false);
-            },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: myDetailsContainer3(),
-                          ),
-                        ),
-                        Container(
-                          width: 250,
-                          height: 150,
-                          child: ClipRRect(
-                            borderRadius: new BorderRadius.circular(24.0),
-                            child: Image(
-                              fit: BoxFit.contain,
-                              alignment: Alignment.topRight,
-                              image: AssetImage("assets/images/adddoc.png"),
+                  color: Colors.grey[200],
+                  elevation: 14.0,
+                  borderRadius: BorderRadius.circular(24.0),
+                  shadowColor: Color(0x802196F3),
+                  child: new InkWell(
+                      onTap: () {
+                        //  print("tapped");
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => wards(cookie)),
+                            (route) => false);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: myDetailsContainer1(),
                             ),
                           ),
-                        ),
-                      ],
-                    )),
-                    ),
+                          Container(
+                            width: 250,
+                            height: 150,
+                            child: ClipRRect(
+                              borderRadius: new BorderRadius.circular(24.0),
+                              child: Image(
+                                fit: BoxFit.contain,
+                                alignment: Alignment.topRight,
+                                image: AssetImage("assets/images/ward.png"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
               ),
             ),
           ),
-      
+
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Container(
+              child: new FittedBox(
+                child: Material(
+                  color: Colors.grey[200],
+                  elevation: 14.0,
+                  borderRadius: BorderRadius.circular(24.0),
+                  shadowColor: Color(0x802196F3),
+                  child: new InkWell(
+                      onTap: () {
+                        //  print("tapped");
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FormScreend(cookie)),
+                            (route) => false);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: myDetailsContainer3(),
+                            ),
+                          ),
+                          Container(
+                            width: 250,
+                            height: 150,
+                            child: ClipRRect(
+                              borderRadius: new BorderRadius.circular(24.0),
+                              child: Image(
+                                fit: BoxFit.contain,
+                                alignment: Alignment.topRight,
+                                image: AssetImage("assets/images/adddoc.png"),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              ),
+            ),
+          ),
+
           // Padding(
           //   padding: const EdgeInsets.all(16.0),
           //   child: Container(
@@ -311,23 +328,22 @@ class _HomePageState extends State<dashb> {
       ),
     );
   }
-Widget myDetailsContainer2() {
+
+  Widget myDetailsContainer2() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          
-            child: Container(
-                child: Text(
-              "Covid Rounds",
-              style: TextStyle(
-                  color: Colors.cyan[800],
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
-        
+          child: Container(
+              child: Text(
+            "Covid Rounds",
+            style: TextStyle(
+                color: Colors.cyan[800],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold),
+          )),
+        ),
         Container(
             child: Text(
           "tap to view and add patients",
@@ -346,16 +362,14 @@ Widget myDetailsContainer2() {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          
-            child: Container(
-                child: Text(
-              "Add Patients",
-              style: TextStyle(
-                  color: Colors.cyan[800],
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          
+          child: Container(
+              child: Text(
+            "Add Patients",
+            style: TextStyle(
+                color: Colors.cyan[800],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold),
+          )),
         ),
         Container(
             child: Text(
@@ -375,17 +389,15 @@ Widget myDetailsContainer2() {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          
-            child: Container(
-                child: Text(
-              "Ward List",
-              style: TextStyle(
-                  color: Colors.cyan[800],
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
-        
+          child: Container(
+              child: Text(
+            "Ward List",
+            style: TextStyle(
+                color: Colors.cyan[800],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold),
+          )),
+        ),
         Container(
             child: Text(
           "Tap to view the status",
@@ -398,25 +410,21 @@ Widget myDetailsContainer2() {
     );
   }
 
-  
-
   Widget myDetailsContainer3() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          
-            child: Container(
-                child: Text(
-              "Add doctor",
-              style: TextStyle(
-                  color: Colors.cyan[800],
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
-        
+          child: Container(
+              child: Text(
+            "Add doctor",
+            style: TextStyle(
+                color: Colors.cyan[800],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold),
+          )),
+        ),
         Container(
             child: Text(
           "To be added by admins only",
@@ -429,15 +437,13 @@ Widget myDetailsContainer2() {
     );
   }
 
-  
-
   // Widget myDetailsContainer5() {
   //   return Column(
   //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
   //     children: <Widget>[
   //       Padding(
   //         padding: const EdgeInsets.only(left: 8.0),
-          
+
   //           child: Container(
   //               child: Text(
   //             "Scan QR",
@@ -447,7 +453,7 @@ Widget myDetailsContainer2() {
   //                 fontWeight: FontWeight.bold),
   //           )),
   //         ),
-        
+
   //       Container(
   //           child: Text(
   //         "Tap to scan QR code",
@@ -466,17 +472,15 @@ Widget myDetailsContainer2() {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          
-            child: Container(
-                child: Text(
-              " Settings",
-              style: TextStyle(
-                  color: Colors.cyan[800],
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold),
-            )),
-          ),
-        
+          child: Container(
+              child: Text(
+            " Settings",
+            style: TextStyle(
+                color: Colors.cyan[800],
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold),
+          )),
+        ),
         Container(
             child: Text(
           "To be added by admins only",
