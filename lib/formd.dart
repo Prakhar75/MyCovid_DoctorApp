@@ -37,9 +37,9 @@ class FormScreendState extends State<FormScreend> {
       "MiddleName": _namem,
       "LastName": _namel,
       "PhoneNumber": _phoneNumber,
-      "emmail": _email,
-      "designation": _des,
-      "admin": _admin,
+      "Email": _email,
+      "Designation": _des,
+      "Admin": _admin,
     };
 
     var response = await dio.post(Url,

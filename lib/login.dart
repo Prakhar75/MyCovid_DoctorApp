@@ -20,7 +20,7 @@ class _MyState extends State<LoginScreen> {
   // WELCOME and login page
   TextEditingController passController = new TextEditingController();
   String cookie;
-  String status;
+  String status = "success";
   String hash;
 
   //List<mynumber> mylogin = [];
@@ -153,6 +153,9 @@ class _MyState extends State<LoginScreen> {
                               controller: passController,
                               decoration: InputDecoration(
                                 labelText: "Enter Your Mobile Number",
+                                //errorText: error_text_message()
+                                //? "number not registered"
+                                //: null,
                               ),
                               // obscureText: true,
                               keyboardType: TextInputType.phone,
@@ -170,6 +173,7 @@ class _MyState extends State<LoginScreen> {
                 textColor: Colors.white,
                 child: Text('Get OTP'),
                 onPressed: () async {
+                  //error_text(passController.text);
                   //print(status);
                   if ((passController.text).length != 10) {
                     print('object is not 10................');
