@@ -8,6 +8,7 @@ import 'package:mycovid/myjson.dart';
 import 'package:mycovid/form.dart';
 import 'package:dio/dio.dart';
 import 'package:mycovid/mainpage.dart';
+import 'cards.dart';
 //void main() => runApp(dash(thi));
 
 class dash extends StatelessWidget {
@@ -199,7 +200,7 @@ class ListSearchState extends State<ListSearch> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  MyHomePage(widget.cookie, data),
+                                  cards(widget.cookie, data),
                             ),
                           )
                         });

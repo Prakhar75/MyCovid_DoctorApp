@@ -168,7 +168,7 @@ class _OTPScreenState extends State<OTPScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        content: Icon(Icons.check_circle_outline),
+        content: Icon(Icons.block_rounded),
         actions: [],
       );
 

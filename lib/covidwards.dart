@@ -176,41 +176,8 @@ class _HomePageState extends State<covidwards> {
               ),
             ),
           ),
-          /*Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              child: new FittedBox(
-                child: Material(
-                    color: Colors.grey[200],
-                    elevation: 14.0,
-                    borderRadius: BorderRadius.circular(24.0),
-                    shadowColor: Color(0x802196F3),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: myDetailsContainer2(),
-                          ),
-                        ),
-                        Container(
-                          width: 250,
-                          height: 130,
-                          child: ClipRRect(
-                            borderRadius: new BorderRadius.circular(24.0),
-                            child: Image(
-                              fit: BoxFit.contain,
-                              alignment: Alignment.topRight,
-                              image: AssetImage("assets/images/ward.png"),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-              ),
-            ),
-          ),*/
+       
+    
         ],
       ),
     );
@@ -243,32 +210,7 @@ class _HomePageState extends State<covidwards> {
     );
   }
 
-  /*Widget myDetailsContainer2() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Container(
-              child: Text(
-            "ICU ward",
-            style: TextStyle(
-                color: Colors.cyan[800],
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold),
-          )),
-        ),
-        Container(
-            child: Text(
-          "20 Patients",
-          style: TextStyle(
-            color: Colors.black54,
-            fontSize: 18.0,
-          ),
-        )),
-      ],
-    );
-  }*/
+  
 
   Widget myDetailsContainer3() {
     return Column(
