@@ -34,6 +34,7 @@ class FormScreenState extends State<FormScreen> {
         'https://my-covid-hospital-api.herokuapp.com/patients/newPatient';
 
     dynamic data = {
+      "IPDNumber": int.parse(_ipd),
       "FirstName": _name,
       "MiddleName": _namem,
       "LastName": _namel,
@@ -184,6 +185,22 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 
+  Widget _buildipd() {
+    return TextFormField(
+      decoration: InputDecoration(labelText: 'Enter IPD Number'),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return 'data is Required';
+        }
+
+        return null;
+      },
+      onSaved: (String value) {
+        _ipd = value;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -210,6 +227,7 @@ class FormScreenState extends State<FormScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                _buildipd(),
                 _buildName(),
                 _buildNamem(),
                 _buildNamel(),

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mycovid/cards.dart';
 import 'package:mycovid/myjson.dart';
 import 'package:dio/dio.dart';
 import 'package:mycovid/dashboard.dart';
@@ -36,7 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => dashb(widget.cookie),
+                        builder: (context) =>
+                            cards(widget.cookie, widget.myData),
                       ),
                     );
                   },

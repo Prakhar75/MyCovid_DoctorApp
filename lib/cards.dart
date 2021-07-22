@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:mycovid/dashboard.dart';
 
 import 'ward15.dart';
 import 'details.dart';
 import 'package:mycovid/wards.dart';
 import 'package:mycovid/myjson.dart';
 
-
 class cards extends StatefulWidget {
   final String cookie;
   cards(this.cookie, this.myData);
-   myjson myData;
+  myjson myData;
   @override
   _HomePageState createState() => _HomePageState(cookie);
 }
@@ -21,7 +21,7 @@ class _HomePageState extends State<cards> {
   final dio = new Dio(); // for http requests
   List<myjson> myALLDATA = [];
   List<myjson> mycopy = [];
-   var data ;
+  var data;
   static List<String> mainDataList = [];
   getUsers() async {
     //Cookie("connect.sid", widget.cookie);
@@ -39,7 +39,7 @@ class _HomePageState extends State<cards> {
     print(response.data["data"].runtimeType);
     //debugPrint(response.body);
     //var jsonBody = jsonDecode(response.data);
-   
+
     for (data in response.data["data"]) {
       myALLDATA.add(new myjson(
           data['FirstName'],
@@ -74,7 +74,7 @@ class _HomePageState extends State<cards> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => wards(cookie),
+                  builder: (context) => dash(cookie),
                 ),
               );
             },
@@ -83,101 +83,95 @@ class _HomePageState extends State<cards> {
         scrollDirection: Axis.vertical,
         children: <Widget>[
           Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                    gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [Colors.grey[600], Colors.red[400]])),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
-                      child: Container(
-                        height: 45,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                            child: Text(
-                             'name',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
-                            ),
-                          ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [Colors.grey[600], Colors.red[400]])),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
+                  child: Container(
+                    height: 45,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                        child: Text(
+                          widget.myData.FirstName +
+                              " " +
+                              widget.myData.LastName,
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border:
-                                Border.all(width: 1.0, color: Colors.white)),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 10),
-                      child: Container(
-                        height: 45,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                            child: Text(
-                              "ipd nnumber",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border:
-                                Border.all(width: 1.0, color: Colors.white70)),
-                      ),
-                    ),
-                      Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 10),
-                      child: Container(
-                        height: 45,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                            child: Text(
-                              "date of admission",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border:
-                                Border.all(width: 1.0, color: Colors.white70)),
-                      ),
-                    ),
-                       Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 10),
-                      child: Container(
-                        height: 45,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-                            child: Text(
-                              "Phone number",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
-                            ),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            border:
-                                Border.all(width: 1.0, color: Colors.white70)),
-                      ),
-                    ),
-                  ],
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(width: 1.0, color: Colors.white)),
+                  ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 3, 20, 10),
+                  child: Container(
+                    height: 45,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                        child: Text(
+                          "ipd nnumber",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(width: 1.0, color: Colors.white70)),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 3, 20, 10),
+                  child: Container(
+                    height: 45,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                        child: Text(
+                          "widget.myData.AdmissionDatetime",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(width: 1.0, color: Colors.white70)),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 3, 20, 10),
+                  child: Container(
+                    height: 45,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+                        child: Text(
+                          widget.myData.PhoneNumber.toString(),
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(width: 1.0, color: Colors.white70)),
+                  ),
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
@@ -192,7 +186,9 @@ class _HomePageState extends State<cards> {
                       print("tapped");
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => war15(cookie)),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MyHomePage(cookie, widget.myData)),
                       );
                     },
                     child: Row(
@@ -237,7 +233,9 @@ class _HomePageState extends State<cards> {
                       print("tapped");
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MyHomePage(widget.cookie, data)),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MyHomePage(widget.cookie, widget.myData)),
                       );
                     },
                     child: Row(
@@ -268,8 +266,6 @@ class _HomePageState extends State<cards> {
               ),
             ),
           ),
-       
-    
         ],
       ),
     );
@@ -302,8 +298,6 @@ class _HomePageState extends State<cards> {
     );
   }
 
-  
-
   Widget myDetailsContainer2() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -330,9 +324,4 @@ class _HomePageState extends State<cards> {
       ],
     );
   }
-
-  
-
-
-  
 }
