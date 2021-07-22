@@ -92,10 +92,11 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Container(
           child: Column(
             children: <Widget>[
-              SizedBox(
-                height: 10,
-              ),
+             
               Container(
+          child: Padding(
+                            padding:EdgeInsets.all(10),
+          child:Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(30)),
                     gradient: LinearGradient(
@@ -105,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 4),
                       child: Container(
                         height: 45,
                         child: Align(
@@ -128,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 10),
+                      padding: const EdgeInsets.fromLTRB(10, 3, 10, 10),
                       child: Container(
                         height: 45,
                         child: Align(
@@ -151,10 +152,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
+          )
               ),
+             
               Container(
+          child: Padding(
+                            padding:EdgeInsets.all(10),
+          child:Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(30)),
                     gradient: LinearGradient(
@@ -164,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 4),
                       child: Container(
                         height: 45,
                         child: Align(
@@ -173,8 +177,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                hintText: 'spO2 (%)',
-                                hintStyle: TextStyle(color: Colors.white70),
+                                labelText: '                       spO2 (%)',
+                                labelStyle: TextStyle(color: Colors.white70),
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
@@ -203,7 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                      padding: const EdgeInsets.fromLTRB(10, 3, 10, 4),
                       child: Container(
                         height: 45,
                         child: Align(
@@ -212,8 +216,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                hintText: 'Blood Pressure Systolic(mm Hg)',
-                                hintStyle: TextStyle(color: Colors.white70),
+                                labelText: '                       Blood Pressure Systolic(mm Hg)',
+                                labelStyle: TextStyle(color: Colors.white70),
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
@@ -242,7 +246,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                      padding: const EdgeInsets.fromLTRB(10, 3, 10, 4),
                       child: Container(
                         height: 45,
                         child: Align(
@@ -251,8 +255,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                hintText: 'Blood Pressure Diastolic(mm Hg)',
-                                hintStyle: TextStyle(color: Colors.white70),
+                                labelText: '                       Blood Pressure Diastolic(mm Hg)',
+                                labelStyle: TextStyle(color: Colors.white70),
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
@@ -281,7 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                      padding: const EdgeInsets.fromLTRB(10, 3, 10, 4),
                       child: Container(
                         height: 45,
                         child: Align(
@@ -290,9 +294,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                hintText: 'Respiratory Rate (cycles)',
+                                labelText: '                       Respiratory Rate (cycles)',
                                 fillColor: Colors.white,
-                                hintStyle: TextStyle(color: Colors.white70),
+                                labelStyle: TextStyle(color: Colors.white70),
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
@@ -321,7 +325,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                      padding: const EdgeInsets.fromLTRB(10, 3, 10, 4),
                       child: Container(
                         height: 45,
                         child: Align(
@@ -330,8 +334,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                hintText: 'Pulse Rate (BPM)',
-                                hintStyle: TextStyle(color: Colors.white70),
+                                labelText: '                       Pulse Rate (BPM)',
+                                labelStyle: TextStyle(color: Colors.white70),
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
@@ -360,7 +364,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 4),
+                      padding: const EdgeInsets.fromLTRB(10, 3, 10, 4),
                       child: Container(
                         height: 45,
                         child: Align(
@@ -369,8 +373,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                hintText: 'O2 (litres)',
-                                hintStyle: TextStyle(color: Colors.white70),
+                                labelText: '                       O2 (litres)',
+                                labelStyle: TextStyle(color: Colors.white70),
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
@@ -399,7 +403,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 3, 20, 10),
+                      padding: const EdgeInsets.fromLTRB(10, 3, 10, 10),
                       child: Container(
                         height: 45,
                         child: Align(
@@ -408,8 +412,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
                             child: TextFormField(
                               decoration: InputDecoration(
-                                hintText: 'Temperature',
-                                hintStyle: TextStyle(color: Colors.white70),
+                                labelText: '                       Temperature',
+                                labelStyle: TextStyle(color: Colors.white70),
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
@@ -439,6 +443,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
+              ),
+          ),
               ),
               Expanded(
                 child: Align(

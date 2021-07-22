@@ -83,12 +83,14 @@ class _HomePageState extends State<cards> {
         scrollDirection: Axis.vertical,
         children: <Widget>[
           Container(
+          child: Padding(
+                            padding:EdgeInsets.all(10),
+          child:Container(
+            padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-                gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [Colors.grey[600], Colors.red[400]])),
+                color: Colors.blueGrey[500],
+                    ),
             child: Column(
               children: <Widget>[
                 Padding(
@@ -171,6 +173,8 @@ class _HomePageState extends State<cards> {
                 ),
               ],
             ),
+          ),
+          ),
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),

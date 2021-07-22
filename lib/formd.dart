@@ -59,7 +59,12 @@ class FormScreendState extends State<FormScreend> {
 
   Widget _buildName() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'First Name'),
+      decoration: InputDecoration(labelText: 'First Name',
+      suffixText: '*',
+                  suffixStyle: TextStyle(
+                    fontSize: 25,
+                    color: Colors.red,
+      )),
       validator: (String value) {
         if (value.isEmpty) {
           return 'Name is Required';
@@ -87,7 +92,12 @@ class FormScreendState extends State<FormScreend> {
 
   Widget _buildNamel() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Last Name'),
+      decoration: InputDecoration(labelText: 'Last Name',
+      suffixText: '*',
+                  suffixStyle: TextStyle(
+                    fontSize: 25,
+                    color: Colors.red,
+      )),
       validator: (String value) {
         return null;
       },
@@ -101,9 +111,9 @@ class FormScreendState extends State<FormScreend> {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Email'),
       validator: (String value) {
-        if (value.isEmpty) {
-          return 'Email is Required';
-        }
+        // if (value.isEmpty) {
+        //   return 'Email is Required';
+        // }
 
         if (!RegExp(
                 r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
@@ -136,7 +146,12 @@ class FormScreendState extends State<FormScreend> {
 
   Widget _buildPhoneNumber() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Phone number'),
+      decoration: InputDecoration(labelText: 'Phone number',
+      suffixText: '*',
+                  suffixStyle: TextStyle(
+                    fontSize: 25,
+                    color: Colors.red,
+      )),
       maxLength: 10,
       keyboardType: TextInputType.phone,
       validator: (String value) {
@@ -156,9 +171,9 @@ class FormScreendState extends State<FormScreend> {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Enter Designation'),
       validator: (String value) {
-        if (value.isEmpty) {
-          return 'data is Required';
-        }
+        // if (value.isEmpty) {
+        //   return 'data is Required';
+        // }
 
         return null;
       },

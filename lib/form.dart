@@ -62,7 +62,12 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildName() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'First Name'),
+      decoration: InputDecoration(labelText: 'First Name',
+      suffixText: '*',
+                  suffixStyle: TextStyle(
+                    fontSize: 25,
+                    color: Colors.red,
+      )),
       validator: (String value) {
         if (value.isEmpty) {
           return 'Name is Required';
@@ -90,7 +95,12 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildNamel() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Last Name'),
+      decoration: InputDecoration(labelText: 'Last Name',
+      suffixText: '*',
+                  suffixStyle: TextStyle(
+                    fontSize: 25,
+                    color: Colors.red,
+      )),
       validator: (String value) {
         return null;
       },
@@ -102,7 +112,12 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _builRelname() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "Relative's Name"),
+      decoration: InputDecoration(labelText: "Relative's Name",
+      suffixText: '*',
+                  suffixStyle: TextStyle(
+                    fontSize: 25,
+                    color: Colors.red,
+      )),
       keyboardType: TextInputType.name,
       validator: (String value) {
         if (value.isEmpty) {
@@ -119,7 +134,12 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildPhoneNumber() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Phone number'),
+      decoration: InputDecoration(labelText: 'Phone number',
+      suffixText: '*',
+                  suffixStyle: TextStyle(
+                    fontSize: 25,
+                    color: Colors.red,
+      )),
       maxLength: 10,
       keyboardType: TextInputType.phone,
       validator: (String value) {
@@ -137,7 +157,12 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildRelphNo() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "Relative's phone number"),
+      decoration: InputDecoration(labelText: "Relative's phone number",
+      suffixText: '*',
+                  suffixStyle: TextStyle(
+                    fontSize: 25,
+                    color: Colors.red,
+      )),
       maxLength: 10,
       keyboardType: TextInputType.phone,
       validator: (String value) {
@@ -171,7 +196,9 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _wardID() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Enter Ward Number'),
+      
+      decoration: InputDecoration(labelText: 'Enter Ward Number',
+      ),
       validator: (String value) {
         if (value.isEmpty) {
           return 'data is Required';
