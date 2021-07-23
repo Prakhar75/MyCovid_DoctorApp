@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:mycovid/dashboard.dart';
 import 'package:mycovid/mainpage.dart';
+import 'package:dropdownfield/dropdownfield.dart';
+
 //void main() => runApp(FormScreen());
 
 class FormScreend extends StatefulWidget {
@@ -59,12 +61,13 @@ class FormScreendState extends State<FormScreend> {
 
   Widget _buildName() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'First Name',
-      suffixText: '*',
-                  suffixStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-      )),
+      decoration: InputDecoration(
+          labelText: 'First Name',
+          suffixText: '*',
+          suffixStyle: TextStyle(
+            fontSize: 25,
+            color: Colors.red,
+          )),
       validator: (String value) {
         if (value.isEmpty) {
           return 'Name is Required';
@@ -92,13 +95,17 @@ class FormScreendState extends State<FormScreend> {
 
   Widget _buildNamel() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Last Name',
-      suffixText: '*',
-                  suffixStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-      )),
+      decoration: InputDecoration(
+          labelText: 'Last Name',
+          suffixText: '*',
+          suffixStyle: TextStyle(
+            fontSize: 25,
+            color: Colors.red,
+          )),
       validator: (String value) {
+         if (value.isEmpty) {
+          return 'Name is Required';
+        }
         return null;
       },
       onSaved: (String value) {
@@ -146,12 +153,13 @@ class FormScreendState extends State<FormScreend> {
 
   Widget _buildPhoneNumber() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Phone number',
-      suffixText: '*',
-                  suffixStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-      )),
+      decoration: InputDecoration(
+          labelText: 'Phone number',
+          suffixText: '*',
+          suffixStyle: TextStyle(
+            fontSize: 25,
+            color: Colors.red,
+          )),
       maxLength: 10,
       keyboardType: TextInputType.phone,
       validator: (String value) {
@@ -167,20 +175,30 @@ class FormScreendState extends State<FormScreend> {
     );
   }
 
-  Widget _desig() {
-    return TextFormField(
-      decoration: InputDecoration(labelText: 'Enter Designation'),
-      validator: (String value) {
-        // if (value.isEmpty) {
-        //   return 'data is Required';
-        // }
+  String desig;
+  List<String> des = [
+    "Intern",
+    "Resident 1",
+    "Resident 2",
+    "Resident 3",
+  ];
 
-        return null;
-      },
-      onSaved: (String value) {
-        _des = value;
-      },
-    );
+  Widget _desig() {
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          DropDownField(
+            onValueChanged: (dynamic value) {
+              desig = value;
+            },
+            value: desig,
+            required: false,
+            strict: true,
+            hintText: 'Choose a designation',
+           
+            items: des,
+          ),
+        ]);
   }
 
   @override
@@ -214,8 +232,9 @@ class FormScreendState extends State<FormScreend> {
                 _buildNamel(),
                 _buildPhoneNumber(),
                 _buildEmail(),
+                 SizedBox(height: 40),
                 _desig(),
-                SizedBox(height: 10),
+                SizedBox(height: 5),
                 CheckboxListTile(
                   controlAffinity: ListTileControlAffinity.leading,
                   title: Text('Add as Admin'),

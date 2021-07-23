@@ -314,7 +314,7 @@ class _HomePageState extends State<dashb> {
                             child: Image(
                               fit: BoxFit.contain,
                               alignment: Alignment.topRight,
-                              image: AssetImage("assets/images/setting.png"),
+                              image: AssetImage("assets/images/logout.png"),
                             ),
                           ),
                         ),
@@ -473,7 +473,7 @@ class _HomePageState extends State<dashb> {
           padding: const EdgeInsets.only(left: 8.0),
           child: Container(
               child: Text(
-            " Settings",
+            "Logout",
             style: TextStyle(
                 color: Colors.cyan[800],
                 fontSize: 24.0,
@@ -482,7 +482,7 @@ class _HomePageState extends State<dashb> {
         ),
         Container(
             child: Text(
-          "To be added by admins only",
+          "Tap to logout and exit App",
           style: TextStyle(
             color: Colors.black54,
             fontSize: 18.0,

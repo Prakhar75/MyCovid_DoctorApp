@@ -266,7 +266,7 @@ class FormScreenState extends State<FormScreen> {
                 SizedBox(height: 100),
                 RaisedButton(
                   child: Text(
-                    'Submit',
+                    'Next',
                     style: TextStyle(color: Colors.blue, fontSize: 16),
                   ),
                   onPressed: () async {

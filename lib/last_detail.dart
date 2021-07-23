@@ -173,7 +173,7 @@ class _MyHomePageState extends State<det> {
                   children: <Widget>[
                     ExpansionTile(
       title:
-      Text('\nLast Updated on dd/mm/yyyy \n\n\nspO2 (%)      \n\nBlood Pressure Systolic(mm Hg)    \n\nBlood Pressure Diatolic(mm Hg) \n',
+      Text('\nLast Updated on -  dd/mm/yyyy \n\nat time -    \n\n\nPulse Rate (BPM)  \n\nSpO\u2082 (%) \n',
       style: TextStyle(color: Colors.white),
       ),
       
@@ -182,18 +182,15 @@ class _MyHomePageState extends State<det> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 3, 10, 4),
                       child: Container(
-                        
+                        height: 45,
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
                             child: Text(
-                                'Respiratory Rate (cycles)',
-                                
+                                'O\u2082 (Litres)',
                               style:  TextStyle(color: Colors.white,
-                              fontSize: 17)
-                              
-                              ,
+                               fontSize: 17),
                                
                               ),
                             ),
@@ -201,6 +198,8 @@ class _MyHomePageState extends State<det> {
                         ),
                       
                       ),
+
+                    
                     
                   Padding(
                       padding: const EdgeInsets.fromLTRB(10, 3, 10, 4),
@@ -211,7 +210,7 @@ class _MyHomePageState extends State<det> {
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
                             child: Text(
-                                'Pulse Rate (BPM)',
+                                'SBP (mm Hg)',
                               style:  TextStyle(color: Colors.white,
                                fontSize: 17),
                                
@@ -221,7 +220,7 @@ class _MyHomePageState extends State<det> {
                         ),
                       
                       ),
-                  Padding(
+                      Padding(
                       padding: const EdgeInsets.fromLTRB(10, 3, 10, 4),
                       child: Container(
                         height: 45,
@@ -230,9 +229,30 @@ class _MyHomePageState extends State<det> {
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
                             child: Text(
-                                'O2 (Litres)',
+                                'DBP (mm Hg)',
                               style:  TextStyle(color: Colors.white,
                                fontSize: 17),
+                               
+                              ),
+                            ),
+                          ),
+                        ),
+                      
+                      ),
+                  
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 3, 10, 4),
+                      child: Container(
+                         height: 45,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                            child: Text(
+                                'Resp. Rate (cycles)',
+                                
+                              style:  TextStyle(color: Colors.white,
+                              fontSize: 17),
                                
                               ),
                             ),
