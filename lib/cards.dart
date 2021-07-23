@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:mycovid/dashboard.dart';
 
-import 'ward15.dart';
+import 'last_detail.dart';
 import 'details.dart';
 import 'package:mycovid/wards.dart';
 import 'package:mycovid/myjson.dart';
@@ -192,7 +192,7 @@ class _HomePageState extends State<cards> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                MyHomePage(cookie, widget.myData)),
+                                det(cookie, widget.myData)),
                       );
                     },
                     child: Row(
