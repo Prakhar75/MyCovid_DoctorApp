@@ -13,7 +13,8 @@ import 'cards.dart';
 
 class dash extends StatelessWidget {
   final String cookie;
-  dash(this.cookie);
+  final String doc_name;
+  dash(this.cookie, this.doc_name);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,7 +31,7 @@ class dash extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => dashb(cookie),
+                    builder: (context) => dashb(cookie, doc_name),
                   ),
                 );
               },
@@ -54,7 +55,7 @@ class dash extends StatelessWidget {
                   ),
                 )),
               ),
-              ListSearch(cookie),
+              ListSearch(cookie, doc_name),
             ],
           ),
         ),
@@ -86,7 +87,7 @@ class dash extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FormScreen(cookie),
+                      builder: (context) => FormScreen(cookie, doc_name),
                     ),
                   );
                 },
@@ -105,7 +106,8 @@ class dash extends StatelessWidget {
 
 class ListSearch extends StatefulWidget {
   final String cookie;
-  ListSearch(this.cookie);
+  final String doc_name;
+  ListSearch(this.cookie, this.doc_name);
   ListSearchState createState() => ListSearchState();
 }
 
@@ -200,7 +202,7 @@ class ListSearchState extends State<ListSearch> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  cards(widget.cookie, data),
+                                  cards(widget.cookie, data, widget.doc_name),
                             ),
                           )
                         });

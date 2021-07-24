@@ -8,7 +8,8 @@ import 'package:mycovid/wards.dart';
 
 class covidwards extends StatefulWidget {
   final String cookie;
-  covidwards(this.cookie);
+  final String doc_name;
+  covidwards(this.cookie, this.doc_name);
   @override
   _HomePageState createState() => _HomePageState(cookie);
 }
@@ -34,7 +35,7 @@ class _HomePageState extends State<covidwards> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => wards(cookie),
+                  builder: (context) => wards(cookie, widget.doc_name),
                 ),
               );
             },
@@ -56,7 +57,9 @@ class _HomePageState extends State<covidwards> {
                       print("tapped");
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => war5(cookie)),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                war5(cookie, widget.doc_name)),
                       );
                     },
                     child: Row(
@@ -100,7 +103,9 @@ class _HomePageState extends State<covidwards> {
                       print("tapped");
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => war15(cookie)),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                war15(cookie, widget.doc_name)),
                       );
                     },
                     child: Row(
@@ -145,7 +150,9 @@ class _HomePageState extends State<covidwards> {
                       print("tapped");
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => war25(cookie)),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                war25(cookie, widget.doc_name)),
                       );
                     },
                     child: Row(
@@ -176,8 +183,6 @@ class _HomePageState extends State<covidwards> {
               ),
             ),
           ),
-       
-    
         ],
       ),
     );
@@ -209,8 +214,6 @@ class _HomePageState extends State<covidwards> {
       ],
     );
   }
-
-  
 
   Widget myDetailsContainer3() {
     return Column(

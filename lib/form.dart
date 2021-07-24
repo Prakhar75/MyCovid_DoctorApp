@@ -9,7 +9,8 @@ import 'package:mycovid/mainpage.dart';
 
 class FormScreen extends StatefulWidget {
   final String cookie;
-  FormScreen(this.cookie);
+  final String doc_name;
+  FormScreen(this.cookie, this.doc_name);
   @override
   State<StatefulWidget> createState() {
     return FormScreenState();
@@ -62,12 +63,13 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildName() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'First Name',
-      suffixText: '*',
-                  suffixStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-      )),
+      decoration: InputDecoration(
+          labelText: 'First Name',
+          suffixText: '*',
+          suffixStyle: TextStyle(
+            fontSize: 25,
+            color: Colors.red,
+          )),
       validator: (String value) {
         if (value.isEmpty) {
           return 'Name is Required';
@@ -95,12 +97,13 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildNamel() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Last Name',
-      suffixText: '*',
-                  suffixStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-      )),
+      decoration: InputDecoration(
+          labelText: 'Last Name',
+          suffixText: '*',
+          suffixStyle: TextStyle(
+            fontSize: 25,
+            color: Colors.red,
+          )),
       validator: (String value) {
         return null;
       },
@@ -112,12 +115,13 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _builRelname() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "Relative's Name",
-      suffixText: '*',
-                  suffixStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-      )),
+      decoration: InputDecoration(
+          labelText: "Relative's Name",
+          suffixText: '*',
+          suffixStyle: TextStyle(
+            fontSize: 25,
+            color: Colors.red,
+          )),
       keyboardType: TextInputType.name,
       validator: (String value) {
         if (value.isEmpty) {
@@ -134,12 +138,13 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildPhoneNumber() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Phone number',
-      suffixText: '*',
-                  suffixStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-      )),
+      decoration: InputDecoration(
+          labelText: 'Phone number',
+          suffixText: '*',
+          suffixStyle: TextStyle(
+            fontSize: 25,
+            color: Colors.red,
+          )),
       maxLength: 10,
       keyboardType: TextInputType.phone,
       validator: (String value) {
@@ -157,12 +162,13 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildRelphNo() {
     return TextFormField(
-      decoration: InputDecoration(labelText: "Relative's phone number",
-      suffixText: '*',
-                  suffixStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.red,
-      )),
+      decoration: InputDecoration(
+          labelText: "Relative's phone number",
+          suffixText: '*',
+          suffixStyle: TextStyle(
+            fontSize: 25,
+            color: Colors.red,
+          )),
       maxLength: 10,
       keyboardType: TextInputType.phone,
       validator: (String value) {
@@ -196,8 +202,8 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _wardID() {
     return TextFormField(
-      
-      decoration: InputDecoration(labelText: 'Enter Ward Number',
+      decoration: InputDecoration(
+        labelText: 'Enter Ward Number',
       ),
       validator: (String value) {
         if (value.isEmpty) {
@@ -241,7 +247,7 @@ class FormScreenState extends State<FormScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => dashb(widget.cookie),
+                  builder: (context) => dashb(widget.cookie, widget.doc_name),
                 ),
               );
             },
@@ -266,7 +272,7 @@ class FormScreenState extends State<FormScreen> {
                 SizedBox(height: 100),
                 RaisedButton(
                   child: Text(
-                    'Submit',
+                    'Next',
                     style: TextStyle(color: Colors.blue, fontSize: 16),
                   ),
                   onPressed: () async {
@@ -279,7 +285,8 @@ class FormScreenState extends State<FormScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => dash(widget.cookie),
+                          builder: (context) =>
+                              dash(widget.cookie, widget.doc_name),
                         ),
                       );
                     }

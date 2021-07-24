@@ -8,7 +8,8 @@ import 'wards.dart';
 
 class dashb extends StatefulWidget {
   final String cookie;
-  dashb(this.cookie);
+  final String doc_name;
+  dashb(this.cookie, this.doc_name);
   @override
   _HomePageState createState() => _HomePageState(cookie);
 }
@@ -48,7 +49,7 @@ class _HomePageState extends State<dashb> {
               children: <Widget>[
                 Text(
                   // make children widget for better styling here..
-                  "Welcome, Dr.Abhinav ",
+                  "Welcome, Dr. ${widget.doc_name} ",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.grey[900],
@@ -84,7 +85,9 @@ class _HomePageState extends State<dashb> {
                         //  print("tapped");
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => dash(cookie)),
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  dash(cookie, widget.doc_name)),
                         );
                       },
                       child: Row(
@@ -130,7 +133,8 @@ class _HomePageState extends State<dashb> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => FormScreen(cookie)),
+                              builder: (context) =>
+                                  FormScreen(cookie, widget.doc_name)),
                         );
                       },
                       child: Row(
@@ -176,7 +180,8 @@ class _HomePageState extends State<dashb> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => wards(cookie)),
+                              builder: (context) =>
+                                  wards(cookie, widget.doc_name)),
                         );
                       },
                       child: Row(
@@ -222,7 +227,8 @@ class _HomePageState extends State<dashb> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => FormScreend(cookie)),
+                              builder: (context) =>
+                                  FormScreend(cookie, widget.doc_name)),
                         );
                       },
                       child: Row(
@@ -473,7 +479,7 @@ class _HomePageState extends State<dashb> {
           padding: const EdgeInsets.only(left: 8.0),
           child: Container(
               child: Text(
-            " Settings",
+            "Logout",
             style: TextStyle(
                 color: Colors.cyan[800],
                 fontSize: 24.0,
@@ -482,7 +488,7 @@ class _HomePageState extends State<dashb> {
         ),
         Container(
             child: Text(
-          "To be added by admins only",
+          "Tap to logout and exit App",
           style: TextStyle(
             color: Colors.black54,
             fontSize: 18.0,
