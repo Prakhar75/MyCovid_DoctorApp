@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'mainpage.dart';
 import 'dashboard.dart';
 
@@ -9,6 +10,7 @@ import 'dashboard.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:mycovid/myotp.dart';
 
 class OTPScreen extends StatefulWidget {
   // OTP page
@@ -26,6 +28,8 @@ class _OTPScreenState extends State<OTPScreen> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
   String otp_status;
   String cookie;
+  String doc_name;
+  List<myotp> myDOCDATA = [];
 
   Dio dio = new Dio();
 
@@ -49,6 +53,24 @@ class _OTPScreenState extends State<OTPScreen> {
     cookie = response.headers.map['set-cookie'][0].split(';')[0].substring(12);
     print(response.data);
     otp_status = response.data["status"];
+    print(otp_status);
+    for (var data in response.data["data"]) {
+      myDOCDATA.add(new myotp(
+        data['StaffId'],
+        data['FirstName'],
+        data['MiddleName'],
+        data['LastName'],
+        data['PhoneNumber'],
+        data['Email'],
+        data['Designation'],
+        data['Admin'],
+        data['WorkingStatus'],
+      ));
+    }
+    myDOCDATA.map((e) {
+      doc_name = e.FirstName;
+    }).toString();
+    print(doc_name);
 
     return response.data;
   }
@@ -83,7 +105,7 @@ class _OTPScreenState extends State<OTPScreen> {
             children: [
               Container(
                 margin: EdgeInsets.only(top: 20, bottom: 20),
-                child: Text("Welcome Dr. Abhinav",
+                child: Text("Welcome Doctor",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,
@@ -122,7 +144,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => dashb(cookie)),
+                              builder: (context) => dashb(cookie, doc_name)),
                           (route) => false);
                     } else {
                       showAlertDialog(context);

@@ -5,7 +5,8 @@ import 'package:mycovid/mainpage.dart';
 
 class wards extends StatefulWidget {
   final String cookie;
-  wards(this.cookie);
+  final String doc_name;
+  wards(this.cookie, this.doc_name);
   @override
   _HomePageState createState() => _HomePageState(cookie);
 }
@@ -31,7 +32,7 @@ class _HomePageState extends State<wards> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => dashb(cookie),
+                  builder: (context) => dashb(cookie, widget.doc_name),
                 ),
               );
             },
@@ -124,7 +125,8 @@ class _HomePageState extends State<wards> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => covidwards(cookie)),
+                            builder: (context) =>
+                                covidwards(cookie, widget.doc_name)),
                       );
                     },
                     child: Row(

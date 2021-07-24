@@ -10,7 +10,8 @@ import 'package:dropdownfield/dropdownfield.dart';
 
 class FormScreend extends StatefulWidget {
   final String cookie;
-  FormScreend(this.cookie);
+  final String doc_name;
+  FormScreend(this.cookie, this.doc_name);
   @override
   State<StatefulWidget> createState() {
     return FormScreendState();
@@ -103,7 +104,7 @@ class FormScreendState extends State<FormScreend> {
             color: Colors.red,
           )),
       validator: (String value) {
-         if (value.isEmpty) {
+        if (value.isEmpty) {
           return 'Name is Required';
         }
         return null;
@@ -195,7 +196,6 @@ class FormScreendState extends State<FormScreend> {
             required: false,
             strict: true,
             hintText: 'Choose a designation',
-           
             items: des,
           ),
         ]);
@@ -214,7 +214,7 @@ class FormScreendState extends State<FormScreend> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => dashb(widget.cookie),
+                  builder: (context) => dashb(widget.cookie, widget.doc_name),
                 ),
               );
             },
@@ -232,7 +232,7 @@ class FormScreendState extends State<FormScreend> {
                 _buildNamel(),
                 _buildPhoneNumber(),
                 _buildEmail(),
-                 SizedBox(height: 40),
+                SizedBox(height: 40),
                 _desig(),
                 SizedBox(height: 5),
                 CheckboxListTile(
@@ -262,7 +262,8 @@ class FormScreendState extends State<FormScreend> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => dashb(widget.cookie),
+                            builder: (context) =>
+                                dashb(widget.cookie, widget.doc_name),
                           ),
                         );
                       } else {

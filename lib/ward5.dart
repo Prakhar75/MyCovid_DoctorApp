@@ -14,7 +14,8 @@ import 'package:mycovid/mywardjson.dart';
 
 class war5 extends StatelessWidget {
   final String cookie;
-  war5(this.cookie);
+  final String doc_name;
+  war5(this.cookie, this.doc_name);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +32,7 @@ class war5 extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => covidwards(cookie),
+                    builder: (context) => covidwards(cookie, doc_name),
                   ),
                 );
               },
@@ -50,7 +51,7 @@ class war5 extends StatelessWidget {
                 ),
               )),
             ),
-            ward5(cookie),
+            ward5(cookie, doc_name),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -81,7 +82,7 @@ class war5 extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FormScreen(cookie),
+                      builder: (context) => FormScreen(cookie, doc_name),
                     ),
                   );
                 },
@@ -100,7 +101,8 @@ class war5 extends StatelessWidget {
 
 class ward5 extends StatefulWidget {
   final String cookie;
-  ward5(this.cookie);
+  final String doc_name;
+  ward5(this.cookie, this.doc_name);
   ListSearchState createState() => ListSearchState();
 }
 
